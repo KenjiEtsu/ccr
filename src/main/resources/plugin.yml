@@ -1,0 +1,21 @@
+name: ccrr
+version: '${version}'
+main: com.kenjietsu.ccr.Ccr
+api-version: '1.18'
+depend: ['Multiverse-Core']
+commands:
+    ccr:
+        description: 'start game'
+        usage: /<command>
+        permission: ccrr.command.ccr
+        aliases: [ccr]
+    ccrestart:
+        description: 'restart game'
+        usage: /<command>
+        permission: ccrr.command.ccrestart
+        aliases: [ccrestart]
+    ccaddnonplayer:
+        description: 'add nonplayer'
+        usage: /<command>
+        permission: ccrr.command.ccaddnonplayer
+        aliases: [ccaddnonplayer]
