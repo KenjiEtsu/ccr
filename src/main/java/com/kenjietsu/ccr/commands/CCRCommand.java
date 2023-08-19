@@ -1,4 +1,4 @@
-package com.kenjietsu.ccr.commands.ccr;
+package com.kenjietsu.ccr.commands;
 
 import com.kenjietsu.ccr.eventManager.*;
 import org.bukkit.Bukkit;
@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import static com.kenjietsu.ccr.eventManager.SpleefEvent.customSpleefEvent;
-import static com.kenjietsu.ccr.eventManager.SpleefEvent.getSpleefEvent;
 
 
 public class CCRCommand implements CommandExecutor {
@@ -60,8 +59,11 @@ public class CCRCommand implements CommandExecutor {
                 papaFriaEvent.startEvent();
             }
             else if (args[0].equals("eventoFinal")) {
-                EventoFinalEvent eventoFinal = EventoFinalEvent.getInstance();
+                EventoFinalEvent eventoFinal = EventoFinalEvent.getEventoFinalEvent();
                 eventoFinal.startEvent();
+            }
+            else if (args[0].equals("getSacrificador")) {
+                player.getInventory().addItem(EsconditeEvent.getCatcherItem());
             }
 
 

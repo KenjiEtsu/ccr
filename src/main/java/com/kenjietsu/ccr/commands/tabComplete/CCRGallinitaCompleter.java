@@ -1,4 +1,4 @@
-package com.kenjietsu.ccr.commands.ccr.tabComplete;
+package com.kenjietsu.ccr.commands.tabComplete;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -10,28 +10,22 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CCRTabCompleter implements TabCompleter {
-    private static final String[] COMMANDS = {"balon", "spleef", "escondite", "papafria", "eventoFinal"};
+public class CCRGallinitaCompleter implements TabCompleter {
+    private static final String[] COMMANDS = {"1", "2", "3"};
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!sender.isOp()) {
             return null;
         }
-        final List<String> completions = new ArrayList<>();
+        List<String> completions = new ArrayList<>();
         if (args.length == 1) {
             StringUtil.copyPartialMatches(args[0], List.of(COMMANDS), completions);
             return completions;
         }
-        if (args[0].equals("spleef")) {
-            if (args.length <= 3) {
-                return null;
-            }
+        if (args.length == 2) {
+            return null;
         }
-        if (args[0].equals("escondite") || args[0].equals("papafria")) {
-            if (args.length == 2) {
-                return null;
-            }
-        }
-            return new ArrayList<>();
-        }
+        return new ArrayList<>();
+    }
+
 }

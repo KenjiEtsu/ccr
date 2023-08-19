@@ -2,7 +2,6 @@ package com.kenjietsu.ccr.eventManager;
 
 import com.kenjietsu.ccr.eventManager.utils.Timers;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -28,13 +27,13 @@ public class EsconditeEvent {
 
         player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(3600, 1));
         player.setGameMode(GameMode.ADVENTURE);
-        this.timer = new Timers(3, 0, 0);
+        this.timer = new Timers(0, 20, 0);  //3 Minutes
     }
     public void releaseCatcher() {
         ItemStack item = getCatcherItem();
         catcher.getInventory().addItem(item);
 
-        timer = new Timers(5, 0, 9);
+        timer.restartTimer(5, 0, 9);
     }
     public void tickCatcher() {
         catcher.addPotionEffect(PotionEffectType.GLOWING.createEffect(100, 1));
@@ -46,6 +45,8 @@ public class EsconditeEvent {
         Component name = Component.text("Aniquilador de Entidades").color(net.kyori.adventure.text.format.TextColor.color(0x42FFE4));
 
         meta.displayName(name);
+        meta.setCustomModelData(1);
+
         item.setItemMeta(meta);
         return item;
     }

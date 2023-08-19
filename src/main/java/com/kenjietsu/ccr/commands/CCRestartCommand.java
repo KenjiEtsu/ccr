@@ -1,13 +1,10 @@
-package com.kenjietsu.ccr.commands.ccr;
+package com.kenjietsu.ccr.commands;
 
 import com.kenjietsu.ccr.Ccr;
-import com.onarandombox.MultiverseCore.MultiverseCore;
-import com.onarandombox.MultiverseCore.api.MVWorldManager;
 import com.onarandombox.MultiverseCore.api.MultiverseWorld;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,9 +14,8 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
-import static com.kenjietsu.ccr.eventManager.utils.LocationList.getLocations;
+import static com.kenjietsu.ccr.utils.MVCoreUtils.getMVWorld;
 
 public class CCRestartCommand implements CommandExecutor {
     @Override
@@ -35,9 +31,8 @@ public class CCRestartCommand implements CommandExecutor {
             keyCancel(args[0]);
         }
         else  if (args[0].equals("eventoFinal")){
-            MultiverseCore core = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
-            MVWorldManager worldManager = core.getMVWorldManager();
-            MultiverseWorld world = worldManager.getMVWorld("esplosion");
+
+            MultiverseWorld world = getMVWorld("esplosion");
             for (Entity entity : world.getCBWorld().getEntities()) {
                 if (entity instanceof Item) {
                     entity.remove();

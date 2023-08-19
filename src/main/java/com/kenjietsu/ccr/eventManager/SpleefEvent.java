@@ -1,10 +1,7 @@
 package com.kenjietsu.ccr.eventManager;
 
-import com.destroystokyo.paper.Namespaced;
 import com.kenjietsu.ccr.Ccr;
 import com.kenjietsu.ccr.eventManager.utils.Timers;
-import com.onarandombox.MultiverseCore.MultiverseCore;
-import com.onarandombox.MultiverseCore.api.MVWorldManager;
 import com.onarandombox.MultiverseCore.api.MultiverseWorld;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -14,7 +11,6 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.boss.BossBar;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Boss;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -22,10 +18,11 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import javax.xml.stream.events.Namespace;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+
+import static com.kenjietsu.ccr.utils.MVCoreUtils.getMVWorld;
 
 public class SpleefEvent {
     private Player player1;
@@ -57,9 +54,8 @@ public class SpleefEvent {
     }
 
     public void selectPlayers() {
-        MultiverseCore core = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
-        MVWorldManager worldManager = core.getMVWorldManager();
-        MultiverseWorld world = worldManager.getMVWorld("voidd");
+
+        MultiverseWorld world = getMVWorld("voidd");
         List<Player> onlinePlayers =  world.getCBWorld().getPlayers();
 
         NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), "spleef");
@@ -127,9 +123,7 @@ public class SpleefEvent {
 
 
     private void restartArena() {
-        MultiverseCore core = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
-        MVWorldManager worldManager = core.getMVWorldManager();
-        MultiverseWorld world = worldManager.getMVWorld("voidd");
+        MultiverseWorld world = getMVWorld("voidd");
         int i, j;
         for (i = 0; i<29; i++) {
             for (j = 0; j<29; j++) {

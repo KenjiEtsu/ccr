@@ -2,11 +2,12 @@ package com.kenjietsu.ccr.eventManager;
 
 import com.kenjietsu.ccr.Ccr;
 import com.kenjietsu.ccr.eventManager.utils.Timers;
-import com.onarandombox.MultiverseCore.MultiverseCore;
-import com.onarandombox.MultiverseCore.api.MVWorldManager;
 import com.onarandombox.MultiverseCore.api.MultiverseWorld;
 import net.kyori.adventure.text.Component;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -20,6 +21,8 @@ import org.bukkit.scoreboard.Team;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static com.kenjietsu.ccr.utils.MVCoreUtils.getMVWorld;
 
 public class DodgeBallEvent {
     private static DodgeBallEvent instance;
@@ -40,9 +43,7 @@ public class DodgeBallEvent {
         redPlayers = new ArrayList<>();
         bluePlayers = new ArrayList<>();
         int i;
-        MultiverseCore core = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
-        MVWorldManager worldManager = core.getMVWorldManager();
-        MultiverseWorld world = worldManager.getMVWorld("voidd");
+        MultiverseWorld world = getMVWorld("voidd");
         List<Player> onlinePlayers =  world.getCBWorld().getPlayers();
 
         NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), "balon");

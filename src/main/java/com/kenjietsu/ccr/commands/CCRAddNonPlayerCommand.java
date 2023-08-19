@@ -1,4 +1,4 @@
-package com.kenjietsu.ccr.commands.ccr;
+package com.kenjietsu.ccr.commands;
 
 import com.kenjietsu.ccr.Ccr;
 import org.bukkit.Bukkit;

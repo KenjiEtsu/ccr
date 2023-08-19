@@ -1,21 +1,18 @@
 package com.kenjietsu.ccr.eventManager.utils;
 
-import com.onarandombox.MultiverseCore.MultiverseCore;
-import com.onarandombox.MultiverseCore.api.MVWorldManager;
 import com.onarandombox.MultiverseCore.api.MultiverseWorld;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.kenjietsu.ccr.utils.MVCoreUtils.getMVWorld;
+
 public class LocationList {
 
     public static List<Location> getLocations() {
         List<Location> locations = new ArrayList<>();
-        MultiverseCore core = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
-        MVWorldManager worldManager = core.getMVWorldManager();
-        MultiverseWorld world = worldManager.getMVWorld("esplosion");
+        MultiverseWorld world = getMVWorld("esplosion");
         locations.add(new Location(world.getCBWorld(), -250.2, 28.1, -704.5));
         locations.add(new Location(world.getCBWorld(), -249.3, 10, -679));
         locations.add(new Location(world.getCBWorld(), -268.66, 3, -639.1));
@@ -177,9 +174,7 @@ public class LocationList {
     }
 
     public static Location getCenterLocation() {
-        MultiverseCore core = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
-        MVWorldManager worldManager = core.getMVWorldManager();
-        MultiverseWorld world = worldManager.getMVWorld("esplosion");
+        MultiverseWorld world = getMVWorld("esplosion");
         return new Location(world.getCBWorld(), -104.5, 51, -639.5);
     }
 }

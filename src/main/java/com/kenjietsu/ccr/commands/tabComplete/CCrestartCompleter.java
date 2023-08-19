@@ -1,4 +1,4 @@
-package com.kenjietsu.ccr.commands.ccr.tabComplete;
+package com.kenjietsu.ccr.commands.tabComplete;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -20,6 +20,7 @@ public class CCrestartCompleter implements TabCompleter {
         List<String> completions = new ArrayList<>();
         if (args.length == 1) {
             StringUtil.copyPartialMatches(args[0], List.of(COMMANDS), completions);
+            completions.sort(String.CASE_INSENSITIVE_ORDER);
             return completions;
         }
         return new ArrayList<>();
