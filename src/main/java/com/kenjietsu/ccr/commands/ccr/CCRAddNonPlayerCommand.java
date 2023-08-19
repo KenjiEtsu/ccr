@@ -1,6 +1,7 @@
 package com.kenjietsu.ccr.commands.ccr;
 
 import com.kenjietsu.ccr.Ccr;
+import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,10 +15,38 @@ public class CCRAddNonPlayerCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player player) {
-            NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), "winner");
-            PersistentDataContainer container = player.getPersistentDataContainer();
-            container.set(key, PersistentDataType.STRING, "winner");
-
+            if (args.length != 1 && args.length != 2) {
+                player.sendMessage("Faltan argumentos(o sobran)");
+                return true;
+            }
+            if (args.length == 1) {
+                if (args[0].equals("balon")) {
+                    NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), "balon");
+                    PersistentDataContainer container = player.getPersistentDataContainer();
+                    container.set(key, PersistentDataType.STRING, "balon");
+                    return true;
+                }
+                if (args[0].equals("spleef")) {
+                    NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), "spleef");
+                    PersistentDataContainer container = player.getPersistentDataContainer();
+                    container.set(key, PersistentDataType.STRING, "spleef");
+                    return true;
+                }
+            }
+            if (args.length == 2) {
+                if (args[0].equals("balon")) {
+                    NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), "balon");
+                    PersistentDataContainer container = Bukkit.getPlayer(args[1]).getPersistentDataContainer();
+                    container.set(key, PersistentDataType.STRING, "balon");
+                    return true;
+                }
+                if (args[0].equals("spleef")) {
+                    NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), "spleef");
+                    PersistentDataContainer container = Bukkit.getPlayer(args[1]).getPersistentDataContainer();
+                    container.set(key, PersistentDataType.STRING, "spleef");
+                    return true;
+                }
+            }
         } else {
             sender.sendMessage("Solo jugadores");
         }

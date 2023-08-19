@@ -1,6 +1,7 @@
 package com.kenjietsu.ccr.eventManager;
 
 import com.kenjietsu.ccr.Ccr;
+import com.kenjietsu.ccr.eventManager.utils.Timers;
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import com.onarandombox.MultiverseCore.api.MVWorldManager;
 import com.onarandombox.MultiverseCore.api.MultiverseWorld;
@@ -24,12 +25,16 @@ public class DodgeBallEvent {
     private static DodgeBallEvent instance;
     private List<Player> redPlayers;
     private List<Player> bluePlayers;
+    private Timers timer;
 
     public static DodgeBallEvent getDodgeBallEvent() {
         if (instance == null) {
             instance = new DodgeBallEvent();
         }
         return instance;
+    }
+    public static boolean isDodgeEventOn() {
+        return instance != null;
     }
     public void selectPlayers() {
         redPlayers = new ArrayList<>();
@@ -40,7 +45,7 @@ public class DodgeBallEvent {
         MultiverseWorld world = worldManager.getMVWorld("voidd");
         List<Player> onlinePlayers =  world.getCBWorld().getPlayers();
 
-        NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), "winner");
+        NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), "balon");
 
         for (Player player : onlinePlayers) {
             PersistentDataContainer container = player.getPersistentDataContainer();
@@ -71,6 +76,7 @@ public class DodgeBallEvent {
         Team redTeam = scoreboard.getTeam("redTeam");
         if (redTeam == null) {
             redTeam = scoreboard.registerNewTeam("redTeam");
+            redTeam.setAllowFriendlyFire(false);
         }
         initPlayers(scoreboard, redTeam, redPlayers);
         Team blueTeam = scoreboard.getTeam("blueTeam");
@@ -80,6 +86,8 @@ public class DodgeBallEvent {
 
         }
         initPlayers(scoreboard, blueTeam, bluePlayers);
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:voidd run kill " +
+                "@e[type=minecraft:item,nbt={Item:{id:\"minecraft:tipped_arrow\"}}]");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:voidd positioned " +
                 "-836.5 149.30 486.5 run summon minecraft:item ~ ~ ~ {Item:{id:tipped_arrow,Count:1},PickupDelay:20}");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:voidd positioned " +
@@ -100,24 +108,13 @@ public class DodgeBallEvent {
             player.updateInventory();
             player.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 6000,1 ,false ,false));
             if (team.getName().equals("redTeam")) {
-                player.teleport(new Location(player.getWorld(), -836.5, 148.5, 486.5));
+                player.teleport(new Location(player.getWorld(), -836.5, 148.5, 486.5, 180, 0));
             } else {
                 player.teleport(new Location(player.getWorld(), -836.5, 148.5, 478.5));
             }
         }
+        this.timer = new Timers(5, 0, 8);
 
-    }
-    public void changeTeamColor(Team team, ChatColor color) {
-        // Loop through the players in the team and set their display names with the new color
-        for (String playerName : team.getEntries()) {
-            Bukkit.getPlayerExact(playerName).setDisplayName(color + playerName);
-        }
-    }
-    public void resetTeamColor(Team team) {
-        // Loop through the players in the team and set their display names with the new color
-        for (String playerName : team.getEntries()) {
-            Bukkit.getPlayerExact(playerName).setDisplayName(playerName);
-        }
     }
 
 
@@ -152,12 +149,19 @@ public class DodgeBallEvent {
         }
     }
 
-    private void winnerFinish(Player player) {
-        NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), "winner");
+    public void winnerFinish(Player player) {
+        NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), "balon");
         PersistentDataContainer container = player.getPersistentDataContainer();
-        container.set(key, PersistentDataType.STRING, "winner");
+        container.set(key, PersistentDataType.STRING, "balon");
+
+        player.removePotionEffect(PotionEffectType.GLOWING);
+
+        instance = null;
+
+        timer.stopTimer();
 
         player.teleport(new Location(player.getWorld(), -837, 156, 487));
+        player.getInventory().clear();
 
 
     }
