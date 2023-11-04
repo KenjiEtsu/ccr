@@ -1,14 +1,9 @@
 package com.kenjietsu.ccr.eventManager;
 
 import com.kenjietsu.ccr.eventManager.utils.Timers;
+import com.kenjietsu.ccr.items.ItemManager;
 import com.onarandombox.MultiverseCore.api.MultiverseWorld;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.format.TextDecoration;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
@@ -42,29 +37,12 @@ public class PapaFriaEvent {
         this.timer = new Timers(5, 0, 1);
     }
 
-
-
-    public static ItemStack getPapaFriaItem() {
-        ItemStack item = new ItemStack(Material.POISONOUS_POTATO);
-        ItemMeta meta = item.getItemMeta();
-
-        TextComponent itemName = Component.text("a").decorate(TextDecoration.BOLD).decorate(TextDecoration.OBFUSCATED).color(net.kyori.adventure.text.format.TextColor.color(0x232EFF))
-                .append(Component.text("Papa Fria").decorate(TextDecoration.BOLD).color(net.kyori.adventure.text.format.TextColor.color(0x6AADFF))).decorate(TextDecoration.ITALIC)
-                .append(Component.text("a").decorate(TextDecoration.BOLD).decorate(TextDecoration.OBFUSCATED).color(net.kyori.adventure.text.format.TextColor.color(0x232EFF)));
-
-        meta.displayName(itemName);
-        meta.setCustomModelData(1);
-
-        item.setItemMeta(meta);
-        return item;
-    }
-
     public Player getPotater() {
         return potater;
     }
 
     public void setPotater(Player potaters) {
-        potaters.getInventory().addItem(getPapaFriaItem());
+        potaters.getInventory().addItem(ItemManager.papaFriaItem);
         potaters.addPotionEffect(new org.bukkit.potion.PotionEffect(PotionEffectType.SPEED, 100000, 0, false, false, false));
         potaters.addPotionEffect(new org.bukkit.potion.PotionEffect(PotionEffectType.GLOWING, 100000, 0, false, false, false));
         this.potater = potaters;

@@ -1,6 +1,6 @@
 package com.kenjietsu.ccr.listeners;
 
-import com.kenjietsu.ccr.eventManager.EsconditeEvent;
+import com.kenjietsu.ccr.items.ItemManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,14 +13,14 @@ public class EsconditeListener implements Listener {
     @EventHandler
     public void onBlockClick(PlayerInteractEntityEvent event) {
         if (event.getRightClicked() instanceof Player damaged) {
-            if (event.getPlayer().getInventory().getItemInMainHand().getItemMeta().getCustomModelData() == EsconditeEvent.getCatcherItem().getItemMeta().getCustomModelData()) {
+            if (event.getPlayer().getInventory().getItemInMainHand().getItemMeta().equals(ItemManager.catcherItem.getItemMeta())) {
                 sacrificar(damaged);
             }
         }
     }
     @EventHandler
     public void onItemThrow(PlayerDropItemEvent event) {
-        if (event.getItemDrop().getItemStack().getItemMeta().getCustomModelData() == EsconditeEvent.getCatcherItem().getItemMeta().getCustomModelData()) {
+        if (event.getItemDrop().getItemStack().getItemMeta().equals(ItemManager.catcherItem.getItemMeta())) {
             event.setCancelled(true);
         }
     }

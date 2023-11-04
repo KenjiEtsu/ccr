@@ -19,6 +19,7 @@ public class DodgeBallListener implements Listener {
             if (!isDodgeEventOn()) {
                 return;
             }
+
             DodgeBallEvent dodgeBallEvent = DodgeBallEvent.getDodgeBallEvent();
             if (event.getHitEntity() instanceof Player player) {
                 if(dodgeBallEvent.getRedPlayers().contains(player)) {
@@ -31,11 +32,11 @@ public class DodgeBallListener implements Listener {
                 }
 
             }
+
             if (event.getHitBlock() != null) {
                 event.getEntity().remove();
-
-
             }
+
             if (event.getEntity().getShooter() instanceof Player player) {
                 if (dodgeBallEvent.getRedPlayers().contains(player)) {
                     dodgeBallEvent.spawnArrow(1);
@@ -50,19 +51,19 @@ public class DodgeBallListener implements Listener {
     public void onBlockHit(EntityDamageByBlockEvent event) {
         if (event.getEntity() instanceof Player player) {
             if (event.getDamager().getType() == Material.LAVA) {
-                if (isDodgeEventOn()) {
-                    DodgeBallEvent dodgeBallEvent = DodgeBallEvent.getDodgeBallEvent();
+                if (!isDodgeEventOn()) {
+                    return;
+                }
+                DodgeBallEvent dodgeBallEvent = DodgeBallEvent.getDodgeBallEvent();
 
+                if(dodgeBallEvent.getRedPlayers().contains(player)) {
+                    dodgeBallEvent.deleteRedPlayers(player);
+                    sacrificar(player);
 
-                    if(dodgeBallEvent.getRedPlayers().contains(player)) {
-                        dodgeBallEvent.deleteRedPlayers(player);
-                        sacrificar(player);
-
-                    }
-                    if(dodgeBallEvent.getBluePlayers().contains(player)) {
-                        dodgeBallEvent.deleteBluePlayers(player);
-                        sacrificar(player);
-                    }
+                }
+                if(dodgeBallEvent.getBluePlayers().contains(player)) {
+                    dodgeBallEvent.deleteBluePlayers(player);
+                    sacrificar(player);
                 }
 
                 event.setCancelled(true);

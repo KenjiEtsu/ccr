@@ -15,6 +15,7 @@ public class Timers {
 
     private int minutes;
     private int seconds;
+    private int taskID;
 
 
     public Timers(int minutes, int seconds, int eventID) {
@@ -22,8 +23,8 @@ public class Timers {
         this.seconds = seconds;
         /** 0 = Escondite
          *  1 = Potato
-         *  2 = parkur
-         *  3 = meis
+         *  2 = Normal Timer
+         *  3 = Normal Timer Freeze
          *  4 = gallina
          *  5 = eurocristales
          *  6 = final
@@ -36,10 +37,8 @@ public class Timers {
 
     public void startTimer(int eventID) {
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-        scheduler.scheduleSyncRepeatingTask(Ccr.getPlugin(Ccr.class), () -> {
-            if (minutes == 0) {
-                if (eventID == 1) {
-
+        taskID = scheduler.scheduleSyncRepeatingTask(Ccr.getPlugin(Ccr.class), () -> {
+            if (minutes == 0 && eventID == 1) {
                     if (seconds <= 6 && seconds > 1) {
                         Sound sound = Sound.sound(org.bukkit.Sound.BLOCK_NOTE_BLOCK_BANJO.key(), Sound.Source.MASTER, 1, 1);
                         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -52,19 +51,6 @@ public class Timers {
                             player.playSound(soundF, Sound.Emitter.self());
                         }
                     }
-                }
-            }
-            if (seconds == 0) {
-                if (minutes == 0) {
-                    TimeoutEvent timeoutEvent = new TimeoutEvent(eventID);
-                    Bukkit.getPluginManager().callEvent(timeoutEvent);
-                    scheduler.cancelTasks(Ccr.getPlugin(Ccr.class));
-                } else {
-                    minutes--;
-                    seconds = 59;
-                }
-            } else {
-                seconds--;
             }
             if (seconds % 20 == 0 && eventID == 9) {
                 EsconditeEvent esconditeEvent = EsconditeEvent.getEsconditeEvent();
@@ -73,6 +59,18 @@ public class Timers {
             if (seconds % 30 == 0 && eventID == 6) {
                 EventoFinalEvent eventoFinalEvent = EventoFinalEvent.getEventoFinalEvent();
                 eventoFinalEvent.countPoints();
+            }
+            if (seconds == 0) {
+                if (minutes == 0) {
+                    TimeoutEvent timeoutEvent = new TimeoutEvent(eventID);
+                    Bukkit.getPluginManager().callEvent(timeoutEvent);
+                    scheduler.cancelTask(this.getTaskID());
+                } else {
+                    minutes--;
+                    seconds = 59;
+                }
+            } else {
+                seconds--;
             }
             Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
             Score scoreS = scoreboard.getObjective("Timer").getScore("Segundos");
@@ -84,7 +82,7 @@ public class Timers {
     }
     public void stopTimer() {
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-        scheduler.cancelTasks(Ccr.getPlugin(Ccr.class));
+        scheduler.cancelTask(this.taskID);
         minutes = 0;
         seconds = 0;
         Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
@@ -98,5 +96,7 @@ public class Timers {
         this.seconds = seconds;
         startTimer(eventID);
     }
-
+    public int getTaskID() {
+        return this.taskID;
+    }
 }

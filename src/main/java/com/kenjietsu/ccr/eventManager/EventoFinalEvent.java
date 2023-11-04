@@ -1,6 +1,6 @@
 package com.kenjietsu.ccr.eventManager;
 
-import com.kenjietsu.ccr.eventManager.utils.LocationList;
+import com.kenjietsu.ccr.eventManager.utils.Lists;
 import com.kenjietsu.ccr.eventManager.utils.Timers;
 import com.onarandombox.MultiverseCore.api.MultiverseWorld;
 import net.kyori.adventure.sound.Sound;
@@ -20,7 +20,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.kenjietsu.ccr.eventManager.utils.LocationList.getLocations;
+import static com.kenjietsu.ccr.eventManager.utils.Lists.getFinalLocations;
 import static com.kenjietsu.ccr.utils.MVCoreUtils.getMVWorld;
 import static com.kenjietsu.ccr.utils.MainEventUtils.sacrificar;
 
@@ -60,7 +60,7 @@ public class EventoFinalEvent {
             }
         }
 
-        for (Location location : getLocations()) {
+        for (Location location : getFinalLocations()) {
 
 
 
@@ -81,7 +81,7 @@ public class EventoFinalEvent {
         double closestDistance = Double.MAX_VALUE;
 
         for (Player player : players) {
-            double distance = player.getLocation().distance(LocationList.getCenterLocation());
+            double distance = player.getLocation().distance(Lists.getFinalCenterLocation());
             if (distance < closestDistance && distance < 13) {
                 closestDistance = distance;
                 closestPlayer = player;

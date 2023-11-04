@@ -2,14 +2,10 @@ package com.kenjietsu.ccr.eventManager;
 
 import com.kenjietsu.ccr.eventManager.utils.GallinitaTeam;
 import com.kenjietsu.ccr.eventManager.utils.Timers;
+import com.kenjietsu.ccr.items.ItemManager;
 import com.kenjietsu.ccr.utils.MVCoreUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.ServerOperator;
 
 import java.util.List;
@@ -31,7 +27,7 @@ public class GallinitaEvent {
         List<Player> onlinePlayers = MVCoreUtils.getMVWorld("MidnightCastle").getCBWorld().getPlayers();
         onlinePlayers.removeIf(ServerOperator::isOp);
         if (onlinePlayers.size() > 10 || onlinePlayers.size() < 2 || onlinePlayers.size()%2 != 0) {
-            Bukkit.getLogger().warning("GallinitaEvent: Muchos jugador, o muy pocos, o no son pares");
+            Bukkit.getLogger().warning("GallinitaEvent: Muchos jugadores, o muy pocos, o no son pares");
             return;
         }
         int i;
@@ -77,12 +73,12 @@ public class GallinitaEvent {
     }
     public void gallinerItem(int i , GallinitaTeam team) {
         if (i == 0) {
-            team.primeraGallina().getInventory().setHelmet(getBlindFold());
+            team.primeraGallina().getInventory().setHelmet(ItemManager.blindFold);
             team.segundaGallina().getInventory().setHelmet(null);
         }
         if (i == 1) {
             team.primeraGallina().getInventory().setHelmet(null);
-            team.segundaGallina().getInventory().setHelmet(getBlindFold());
+            team.segundaGallina().getInventory().setHelmet(ItemManager.blindFold);
         }
         if (i == 2){
             team.primeraGallina().getInventory().setHelmet(null);
@@ -92,15 +88,6 @@ public class GallinitaEvent {
         else {
             Bukkit.getLogger().warning("GallinitaEvent: Como mierda hemos llegado aqui?");
         }
-    }
-    public static ItemStack getBlindFold() {
-        ItemStack item = new ItemStack(Material.CARVED_PUMPKIN);
-        ItemMeta meta = item.getItemMeta();
-        meta.setCustomModelData(1);
-        meta.addEnchant(Enchantment.BINDING_CURSE, 1, true);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        item.setItemMeta(meta);
-        return item;
     }
     public List<GallinitaTeam> getGallinitaTeams() {
         return gallinitaTeams;

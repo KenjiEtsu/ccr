@@ -19,3 +19,23 @@ commands:
         usage: /<command>
         permission: ccrr.command.ccaddnonplayer
         aliases: [ccaddnonplayer]
+    CCRGallinita:
+        description: 'give gallinita'
+        usage: /<command>
+        permission: ccrr.command.CCRGallinita
+        aliases: [CCRGallinita]
+    CCAote:
+        description: 'give aote'
+        usage: /<command>
+        permission: ccrr.command.CCRAote
+        aliases: [CCRAote]
+    CCTimer:
+        description: 'start timer'
+        usage: /<command>
+        permission: ccrr.command.CCTimer
+        aliases: [CCTimer]
+    CCTester:
+        description: 'test command'
+        usage: /<command>
+        permission: ccrr.command.CCTester
+        aliases: [CCTester]

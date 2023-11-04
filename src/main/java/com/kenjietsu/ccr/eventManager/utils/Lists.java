@@ -4,13 +4,196 @@ import com.onarandombox.MultiverseCore.api.MultiverseWorld;
 import org.bukkit.Location;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.kenjietsu.ccr.utils.MVCoreUtils.getMVWorld;
 
-public class LocationList {
+public class Lists {
 
-    public static List<Location> getLocations() {
+    public static Map<Integer, String> getQuestionList() {
+        Map<Integer, String> questions = new HashMap<>();
+
+        // 4 opciones
+        questions.put(1, "¿Cuál es la estrella más cercana a la tierra?");
+        questions.put(2, "¿Cuál es el país más grande del mundo?");
+        questions.put(3,"¿Cuál es el país menos poblado del mundo?");
+        questions.put(4,"¿Cuál es el país más poblado del mundo?");
+        questions.put(5,"¿Cuando acabó la primera guerra mundial?");
+        questions.put(6,"¿Cuando acabó la segunda guerra mundial?");
+        questions.put(7,"¿Cuantas veces ha estado el hombre en la luna?");
+        // questions.add("¿A parte de la Casa Blanca, ?");
+        questions.put(8,"¿Cuál es el río más largo del mundo?");
+        questions.put(9,"Cuantos huesos tiene el cuerpo humano?");
+        questions.put(10,"¿Cómo se llama el proceso por el cual las plantas se alimentan?");
+        questions.put(11,"¿Cuánto vale el número pi?");
+        questions.put(12,"¿Quién pintó La última cena?");
+
+
+
+        return questions;
+    }
+
+    public static List<Location> getLightGrayEuroLocations(){
+        List<Location> locations = new ArrayList<>();
+        MultiverseWorld world = getMVWorld("voidd");
+        locations.add(new Location(world.getCBWorld(), -834, 105, 382));
+        locations.add(new Location(world.getCBWorld(), -834, 105, 392));
+        locations.add(new Location(world.getCBWorld(), -834, 105, 402));
+        locations.add(new Location(world.getCBWorld(), -834, 105, 412));
+        locations.add(new Location(world.getCBWorld(), -834, 105, 422));
+        locations.add(new Location(world.getCBWorld(), -834, 105, 432));
+
+        locations.add(new Location(world.getCBWorld(), -839, 105, 382));
+        locations.add(new Location(world.getCBWorld(), -839, 105, 392));
+        locations.add(new Location(world.getCBWorld(), -839, 105, 402));
+        locations.add(new Location(world.getCBWorld(), -839, 105, 412));
+        locations.add(new Location(world.getCBWorld(), -839, 105, 422));
+        locations.add(new Location(world.getCBWorld(), -839, 105, 432));
+        return locations;
+    }
+    public static List<Location> getYellowEuroLocations() {
+        List<Location> locations = new ArrayList<>();
+        MultiverseWorld world = getMVWorld("voidd");
+        locations.add(new Location(world.getCBWorld(), -834, 105, 524));
+        locations.add(new Location(world.getCBWorld(), -834, 105, 534));
+        locations.add(new Location(world.getCBWorld(), -834, 105, 544));
+        locations.add(new Location(world.getCBWorld(), -834, 105, 554));
+        locations.add(new Location(world.getCBWorld(), -834, 105, 564));
+        locations.add(new Location(world.getCBWorld(), -834, 105, 574));
+
+        locations.add(new Location(world.getCBWorld(), -839, 105, 524));
+        locations.add(new Location(world.getCBWorld(), -839, 105, 534));
+        locations.add(new Location(world.getCBWorld(), -839, 105, 544));
+        locations.add(new Location(world.getCBWorld(), -839, 105, 554));
+        locations.add(new Location(world.getCBWorld(), -839, 105, 564));
+        locations.add(new Location(world.getCBWorld(), -839, 105, 574));
+        return locations;
+    }
+    public static List<Location> getPinkEuroLocations() {
+        List<Location> locations = new ArrayList<>();
+        MultiverseWorld world = getMVWorld("voidd");
+
+        locations.add(new Location(world.getCBWorld(), -937, 105, 478));
+        locations.add(new Location(world.getCBWorld(), -927, 105, 478));
+        locations.add(new Location(world.getCBWorld(), -917, 105, 478));
+        locations.add(new Location(world.getCBWorld(), -907, 105, 478));
+        locations.add(new Location(world.getCBWorld(), -897, 105, 478));
+        locations.add(new Location(world.getCBWorld(), -887, 105, 478));
+
+        locations.add(new Location(world.getCBWorld(), -937, 105, 483));
+        locations.add(new Location(world.getCBWorld(), -927, 105, 483));
+        locations.add(new Location(world.getCBWorld(), -917, 105, 483));
+        locations.add(new Location(world.getCBWorld(), -907, 105, 483));
+        locations.add(new Location(world.getCBWorld(), -897, 105, 483));
+        locations.add(new Location(world.getCBWorld(), -887, 105, 483));
+
+        return locations;
+    }
+    public static List<Location> getMagentaEuroLocations() {
+        List<Location> locations = new ArrayList<>();
+        MultiverseWorld world = getMVWorld("voidd");
+
+        locations.add(new Location(world.getCBWorld(), -795, 105, 478));
+        locations.add(new Location(world.getCBWorld(), -785, 105, 478));
+        locations.add(new Location(world.getCBWorld(), -775, 105, 478));
+        locations.add(new Location(world.getCBWorld(), -765, 105, 478));
+        locations.add(new Location(world.getCBWorld(), -755, 105, 478));
+        locations.add(new Location(world.getCBWorld(), -745, 105, 478));
+
+        locations.add(new Location(world.getCBWorld(), -795, 105, 483));
+        locations.add(new Location(world.getCBWorld(), -785, 105, 483));
+        locations.add(new Location(world.getCBWorld(), -775, 105, 483));
+        locations.add(new Location(world.getCBWorld(), -765, 105, 483));
+        locations.add(new Location(world.getCBWorld(), -755, 105, 483));
+        locations.add(new Location(world.getCBWorld(), -745, 105, 483));
+
+        return locations;
+    }
+    public static List<Location> getOrangeEuroLocations() {
+        List<Location> locations = new ArrayList<>();
+        MultiverseWorld world = getMVWorld("voidd");
+
+        locations.add(new Location(world.getCBWorld(), -764, 105, 413));
+        locations.add(new Location(world.getCBWorld(), -772, 105, 421));
+        locations.add(new Location(world.getCBWorld(), -780, 105, 429));
+        locations.add(new Location(world.getCBWorld(), -788, 105, 437));
+        locations.add(new Location(world.getCBWorld(), -796, 105, 445));
+        locations.add(new Location(world.getCBWorld(), -804, 105, 453));
+
+        locations.add(new Location(world.getCBWorld(), -768, 105, 409));
+        locations.add(new Location(world.getCBWorld(), -776, 105, 417));
+        locations.add(new Location(world.getCBWorld(), -784, 105, 425));
+        locations.add(new Location(world.getCBWorld(), -792, 105, 433));
+        locations.add(new Location(world.getCBWorld(), -800, 105, 441));
+        locations.add(new Location(world.getCBWorld(), -808, 105, 449));
+
+        return locations;
+    }
+    public static List<Location> getGrayEuroLocations() {
+        ArrayList<Location> locations = new ArrayList<>();
+        MultiverseWorld world = getMVWorld("voidd");
+
+        locations.add(new Location(world.getCBWorld(), -906, 105, 408));
+        locations.add(new Location(world.getCBWorld(), -898, 105, 416));
+        locations.add(new Location(world.getCBWorld(), -890, 105, 424));
+        locations.add(new Location(world.getCBWorld(), -882, 105, 432));
+        locations.add(new Location(world.getCBWorld(), -874, 105, 440));
+        locations.add(new Location(world.getCBWorld(), -866, 105, 448));
+
+        locations.add(new Location(world.getCBWorld(), -910, 105, 412));
+        locations.add(new Location(world.getCBWorld(), -902, 105, 420));
+        locations.add(new Location(world.getCBWorld(), -894, 105, 428));
+        locations.add(new Location(world.getCBWorld(), -886, 105, 436));
+        locations.add(new Location(world.getCBWorld(), -878, 105, 444));
+        locations.add(new Location(world.getCBWorld(), -870, 105, 452));
+
+        return locations;
+    }
+    public static List<Location> getLimeEuroLocations() {
+        List<Location> locations = new ArrayList<>();
+        MultiverseWorld world = getMVWorld("voidd");
+
+        locations.add(new Location(world.getCBWorld(), -911, 105, 550));
+        locations.add(new Location(world.getCBWorld(), -903, 105, 542));
+        locations.add(new Location(world.getCBWorld(), -895, 105, 534));
+        locations.add(new Location(world.getCBWorld(), -887, 105, 526));
+        locations.add(new Location(world.getCBWorld(), -879, 105, 518));
+        locations.add(new Location(world.getCBWorld(), -871, 105, 510));
+
+        locations.add(new Location(world.getCBWorld(), -907, 105, 554));
+        locations.add(new Location(world.getCBWorld(), -899, 105, 546));
+        locations.add(new Location(world.getCBWorld(), -891, 105, 538));
+        locations.add(new Location(world.getCBWorld(), -883, 105, 530));
+        locations.add(new Location(world.getCBWorld(), -875, 105, 522));
+        locations.add(new Location(world.getCBWorld(), -867, 105, 514));
+
+        return locations;
+    }
+    public static List<Location> getLightBlueLocations() {
+        List<Location> locations = new ArrayList<>();
+        MultiverseWorld world = getMVWorld("voidd");
+
+        locations.add(new Location(world.getCBWorld(), -769, 105, 555));
+        locations.add(new Location(world.getCBWorld(), -777, 105, 547));
+        locations.add(new Location(world.getCBWorld(), -785, 105, 539));
+        locations.add(new Location(world.getCBWorld(), -793, 105, 531));
+        locations.add(new Location(world.getCBWorld(), -801, 105, 523));
+        locations.add(new Location(world.getCBWorld(), -809, 105, 515));
+
+        locations.add(new Location(world.getCBWorld(), -765, 105, 551));
+        locations.add(new Location(world.getCBWorld(), -773, 105, 543));
+        locations.add(new Location(world.getCBWorld(), -781, 105, 535));
+        locations.add(new Location(world.getCBWorld(), -789, 105, 527));
+        locations.add(new Location(world.getCBWorld(), -797, 105, 519));
+        locations.add(new Location(world.getCBWorld(), -805, 105, 511));
+
+        return locations;
+    }
+
+
+    public static List<Location> getFinalLocations() {
         List<Location> locations = new ArrayList<>();
         MultiverseWorld world = getMVWorld("esplosion");
         locations.add(new Location(world.getCBWorld(), -250.2, 28.1, -704.5));
@@ -173,7 +356,7 @@ public class LocationList {
         return locations;
     }
 
-    public static Location getCenterLocation() {
+    public static Location getFinalCenterLocation() {
         MultiverseWorld world = getMVWorld("esplosion");
         return new Location(world.getCBWorld(), -104.5, 51, -639.5);
     }

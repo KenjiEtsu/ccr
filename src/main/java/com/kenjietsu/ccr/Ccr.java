@@ -1,26 +1,19 @@
 package com.kenjietsu.ccr;
 
-import com.kenjietsu.ccr.commands.CCRAddNonPlayerCommand;
-import com.kenjietsu.ccr.commands.CCRCommand;
-import com.kenjietsu.ccr.commands.CCRGallinitaCommand;
-import com.kenjietsu.ccr.commands.CCRestartCommand;
-import com.kenjietsu.ccr.commands.tabComplete.CCRAddNonPlayerCompleter;
-import com.kenjietsu.ccr.commands.tabComplete.CCRCompleter;
-import com.kenjietsu.ccr.commands.tabComplete.CCRGallinitaCompleter;
-import com.kenjietsu.ccr.commands.tabComplete.CCrestartCompleter;
-import com.kenjietsu.ccr.listeners.*;
+import com.kenjietsu.ccr.commands.*;
+import com.kenjietsu.ccr.commands.tabComplete.*;
+import com.kenjietsu.ccr.items.ItemManager;
+import com.kenjietsu.ccr.listeners.ListenersManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Ccr extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getServer().getPluginManager().registerEvents(new DodgeBallListener(), this);
-        getServer().getPluginManager().registerEvents(new EsconditeListener(), this);
-        getServer().getPluginManager().registerEvents(new PapaListener(), this);
-        getServer().getPluginManager().registerEvents(new SpleefListener(), this);
-        getServer().getPluginManager().registerEvents(new TimerListener(), this);
 
+        ItemManager.init();
+
+        ListenersManager.init(this);
 
         getCommand("ccr").setExecutor(new CCRCommand());
         getCommand("ccr").setTabCompleter(new CCRCompleter());
@@ -33,6 +26,13 @@ public final class Ccr extends JavaPlugin {
 
         getCommand("CCRGallinita").setExecutor(new CCRGallinitaCommand());
         getCommand("CCRGallinita").setTabCompleter(new CCRGallinitaCompleter());
+
+        getCommand("CCAote").setExecutor(new CCRAoteCommand());
+
+        getCommand("CCTimer").setExecutor(new CCTimerCommand());
+        getCommand("CCTimer").setTabCompleter(new CCTimerCompleter());
+
+        getCommand("CCTester").setExecutor(new CCRTester());
     }
 
 

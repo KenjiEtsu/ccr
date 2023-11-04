@@ -14,7 +14,11 @@ import static com.kenjietsu.ccr.utils.MainEventUtils.sacrificar;
 public class SpleefListener implements Listener {
     @EventHandler
     public void onBlockHit(EntityDamageByBlockEvent event) {
+
         if (event.getEntity() instanceof Player player) {
+            if (player.getWorld() != Bukkit.getWorld("voidd")) {
+                return;
+            }
             if (event.getDamager().getType() == Material.LAVA) {
                 if (isSpleefEventOn()) {
                     SpleefEvent spleefEvent = SpleefEvent.getSpleefEvent();

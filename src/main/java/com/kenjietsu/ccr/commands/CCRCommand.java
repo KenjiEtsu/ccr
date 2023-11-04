@@ -1,6 +1,7 @@
 package com.kenjietsu.ccr.commands;
 
 import com.kenjietsu.ccr.eventManager.*;
+import com.kenjietsu.ccr.items.ItemManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -63,7 +64,11 @@ public class CCRCommand implements CommandExecutor {
                 eventoFinal.startEvent();
             }
             else if (args[0].equals("getSacrificador")) {
-                player.getInventory().addItem(EsconditeEvent.getCatcherItem());
+                player.getInventory().addItem(ItemManager.catcherItem);
+            }
+            else if (args[0].equals("eurocristales")) {
+                EuroCristalesEvent euroCristalesEvent = EuroCristalesEvent.getEuroCristalesEvent();
+                euroCristalesEvent.startEvent();
             }
 
 

@@ -44,7 +44,7 @@ public class CCRestartCommand implements CommandExecutor {
         Bukkit.broadcast(message);
         return true;
     }
-    private static void keyCancel(String keyn){
+    public static void keyCancel(String keyn){
         for (Player player: Bukkit.getOnlinePlayers()) {
             NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), keyn);
             PersistentDataContainer container = player.getPersistentDataContainer();
