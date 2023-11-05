@@ -33,6 +33,8 @@ public final class Ccr extends JavaPlugin {
         getCommand("CCTimer").setTabCompleter(new CCTimerCompleter());
 
         getCommand("CCTester").setExecutor(new CCRTester());
+
+        getCommand("CCRanswer").setExecutor(new CCRanswer());
     }
 
 

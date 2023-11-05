@@ -13,7 +13,7 @@ public class ListenersManager {
         getServer().getPluginManager().registerEvents(new TimerListener(), plugin);
         getServer().getPluginManager().registerEvents(new ItemListener(), plugin);
         getServer().getPluginManager().registerEvents(new FreezeEvent(), plugin);
-        getServer().getPluginManager().registerEvents(new NoBatListener(), plugin);
+        getServer().getPluginManager().registerEvents(new UtilListeners(), plugin);
         getServer().getPluginManager().registerEvents(new EuroCristalesListener(), plugin);
     }
 }

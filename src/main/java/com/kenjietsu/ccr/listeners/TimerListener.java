@@ -54,6 +54,8 @@ public class TimerListener implements Listener {
                 eventoFinalEvent.winnGame();
             }
             case 5 -> {
+                EuroCristalesEvent euroCristalesEvent = EuroCristalesEvent.getEuroCristalesEvent();
+                euroCristalesEvent.endQuestion();
             }
             case 4 -> {
                 GallinitaEvent gallinitaEvent = GallinitaEvent.getGallinitaEvent();
@@ -85,6 +87,9 @@ public class TimerListener implements Listener {
                 EsconditeEvent.getEsconditeEvent().releaseCatcher();
             }
             case 9 -> EsconditeEvent.getEsconditeEvent().endEvent();
+            case 10 -> {
+                EuroCristalesEvent.getEuroCristalesEvent().nextQuestion();
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ import com.kenjietsu.ccr.eventManager.EuroCristalesEvent;
 import com.kenjietsu.ccr.eventManager.utils.Lists;
 import org.bukkit.*;
 import org.bukkit.entity.FallingBlock;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -43,7 +44,7 @@ public class EuroCristalesListener implements Listener {
                             if (!euroCristalesEvent.getLightGrayCristales().get(i)) {
                                 continue;
                             }
-                            spawnCardinalFallingGlass(location, Material.LIGHT_GRAY_STAINED_GLASS, world, 0);
+                            spawnCardinalFallingGlass(location, Material.LIGHT_GRAY_STAINED_GLASS, world, 0, event.getPlayer());
                             euroCristalesEvent.flipItemInList(0, i);
                         }
                     }
@@ -62,7 +63,7 @@ public class EuroCristalesListener implements Listener {
                             if (!euroCristalesEvent.getYellowCristales().get(i)) {
                                 continue;
                             }
-                            spawnCardinalFallingGlass(location, Material.YELLOW_STAINED_GLASS, world, 0);
+                            spawnCardinalFallingGlass(location, Material.YELLOW_STAINED_GLASS, world, 0, event.getPlayer());
                             euroCristalesEvent.flipItemInList(1, i);
                         }
                     }
@@ -81,7 +82,7 @@ public class EuroCristalesListener implements Listener {
                             if (!euroCristalesEvent.getPinkCristales().get(i)) {
                                 continue;
                             }
-                            spawnCardinalFallingGlass(location, Material.PINK_STAINED_GLASS, world, 1);
+                            spawnCardinalFallingGlass(location, Material.PINK_STAINED_GLASS, world, 1, event.getPlayer());
                             euroCristalesEvent.flipItemInList(2, i);
                         }
                     }
@@ -100,7 +101,7 @@ public class EuroCristalesListener implements Listener {
                             if (!euroCristalesEvent.getMagentaCristales().get(i)) {
                                 continue;
                             }
-                            spawnCardinalFallingGlass(location, Material.MAGENTA_STAINED_GLASS, world,1);
+                            spawnCardinalFallingGlass(location, Material.MAGENTA_STAINED_GLASS, world,1, event.getPlayer());
                             euroCristalesEvent.flipItemInList(3, i);
                         }
                     }
@@ -119,6 +120,7 @@ public class EuroCristalesListener implements Listener {
                             if (!euroCristalesEvent.getOrangeCristales().get(k)) {
                                 continue;
                             }
+                            event.getPlayer().setVelocity(new Vector(0, -0.1, 0));
                             BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
                             scheduler.scheduleSyncDelayedTask(Ccr.getPlugin(Ccr.class), () -> {
                                 location.add(-1.5, 0, 0.5);
@@ -132,7 +134,8 @@ public class EuroCristalesListener implements Listener {
                                         }
                                         spawnFallingGlass(location, Material.ORANGE_STAINED_GLASS, world);
                                         location.add(-1, 0, 0);
-                                        }
+                                        event.getPlayer().setVelocity(new Vector(0, -0.16, 0));
+                                    }
                                     location.add(2, 0, 1);
                                     }
                             }, 7L);
@@ -155,6 +158,7 @@ public class EuroCristalesListener implements Listener {
                             if (!euroCristalesEvent.getLightBlueCristales().get(k)) {
                                 continue;
                             }
+                            event.getPlayer().setVelocity(new Vector(0, -0.1, 0));
                             BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
                             scheduler.scheduleSyncDelayedTask(Ccr.getPlugin(Ccr.class), () -> {
 
@@ -169,6 +173,7 @@ public class EuroCristalesListener implements Listener {
                                         }
                                         spawnFallingGlass(location, Material.LIGHT_BLUE_STAINED_GLASS, world);
                                         location.add(0, 0, -1);
+                                        event.getPlayer().setVelocity(new Vector(0, -0.16, 0));
                                     }
                                     location.add(-1, 0, 2);
                                 }
@@ -191,7 +196,7 @@ public class EuroCristalesListener implements Listener {
                             if (!euroCristalesEvent.getGrayCristales().get(k)) {
                                 continue;
                             }
-
+                            event.getPlayer().setVelocity(new Vector(0, -0.1, 0));
                             BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
                             scheduler.scheduleSyncDelayedTask(Ccr.getPlugin(Ccr.class), () -> {
                                 location.add(0.5, 0, 1.5);
@@ -205,6 +210,7 @@ public class EuroCristalesListener implements Listener {
                                         }
                                         spawnFallingGlass(location, Material.GRAY_STAINED_GLASS, world);
                                         location.add(0, 0, 1);
+                                        event.getPlayer().setVelocity(new Vector(0, -0.16, 0));
                                     }
                                     location.add(1, 0, -2);
                                 }
@@ -227,6 +233,7 @@ public class EuroCristalesListener implements Listener {
                             if (!euroCristalesEvent.getLimeCristales().get(k)) {
                                 continue;
                             }
+                            event.getPlayer().setVelocity(new Vector(0, -0.1, 0));
                             BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
                             scheduler.scheduleSyncDelayedTask(Ccr.getPlugin(Ccr.class), () -> {
                                 location.add(1.5, 0, -0.5);
@@ -240,6 +247,7 @@ public class EuroCristalesListener implements Listener {
                                         }
                                         spawnFallingGlass(location, Material.LIME_STAINED_GLASS, world);
                                         location.add(1, 0, 0);
+                                        event.getPlayer().setVelocity(new Vector(0, -0.16, 0));
                                     }
                                     location.add(-2, 0, -1);
                                 }
@@ -253,16 +261,19 @@ public class EuroCristalesListener implements Listener {
         }
 
     }
-    private void spawnCardinalFallingGlass(Location location, Material material, World world, int direction) {
+    private void spawnCardinalFallingGlass(Location location, Material material, World world, int direction, Player player) {
+        player.setVelocity(new Vector(0, -0.1, 0));
         if (direction == 0) {
             BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
             scheduler.scheduleSyncDelayedTask(Ccr.getPlugin(Ccr.class), () -> {
-                location.add(-0.5, 0, 1.5);
+                location.add(-0.5, 0, 0.5);
                 world.playSound(location, Sound.BLOCK_GLASS_BREAK, 1, 1);
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 8; j++) {
                         spawnFallingGlass(location, material, world);
                         location.add(0, 0, 1);
+                        player.setVelocity(new Vector(0, -0.16, 0));
+
                     }
                     location.add(-1, 0, -8);
                 }
@@ -276,12 +287,13 @@ public class EuroCristalesListener implements Listener {
                     for (int j = 0; j < 8; j++) {
                         spawnFallingGlass(location, material, world);
                         location.add(1, 0, 0);
+                        player.setVelocity(new Vector(0, -0.16, 0));
+
                     }
                     location.add(-8, 0, 1);
                 }
             }, 7L);
         }
-
     }
 
     public static void spawnFallingGlass(Location location, Material material, World world) {

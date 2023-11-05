@@ -1,41 +1,150 @@
 package com.kenjietsu.ccr.eventManager.utils;
 
 import com.onarandombox.MultiverseCore.api.MultiverseWorld;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.kenjietsu.ccr.utils.MVCoreUtils.getMVWorld;
 
 public class Lists {
 
-    public static Map<Integer, String> getQuestionList() {
+    public static @NotNull Map<Integer, String> getQuestionList() {
         Map<Integer, String> questions = new HashMap<>();
 
         // 4 opciones
-        questions.put(1, "¿Cuál es la estrella más cercana a la tierra?");
-        questions.put(2, "¿Cuál es el país más grande del mundo?");
-        questions.put(3,"¿Cuál es el país menos poblado del mundo?");
-        questions.put(4,"¿Cuál es el país más poblado del mundo?");
-        questions.put(5,"¿Cuando acabó la primera guerra mundial?");
-        questions.put(6,"¿Cuando acabó la segunda guerra mundial?");
-        questions.put(7,"¿Cuantas veces ha estado el hombre en la luna?");
+        questions.put(1, "Cual es la estrella mas cercana a la tierra?");
+        questions.put(2, "Cual es el pais mas grande del mundo?");
+        questions.put(3,"Cual es el pais menos poblado del mundo?");
+        questions.put(4,"Cual es el pais mas poblado del mundo?");
+        questions.put(5,"Cuando acabo la primera guerra mundial?");
+        questions.put(6,"Cuando acabo la segunda guerra mundial?");
+        questions.put(7,"Cuantas veces ha estado el hombre en la luna?");
         // questions.add("¿A parte de la Casa Blanca, ?");
-        questions.put(8,"¿Cuál es el río más largo del mundo?");
+        questions.put(8,"Cual es el rio mas largo del mundo?");
         questions.put(9,"Cuantos huesos tiene el cuerpo humano?");
-        questions.put(10,"¿Cómo se llama el proceso por el cual las plantas se alimentan?");
-        questions.put(11,"¿Cuánto vale el número pi?");
-        questions.put(12,"¿Quién pintó La última cena?");
+        questions.put(10,"Como se llama el proceso por el cual las plantas se alimentan?");
+        questions.put(11,"Cuanto vale el nimero pi?(truncando)");
+        questions.put(12,"Quien pinto La iltima cena?");
 
 
 
         return questions;
     }
+    public static @NotNull List<String> getResponses(Integer i) {
+        List<String> responses = new ArrayList<>();
+        switch (i) {
+            case(1):
+                responses.add("Sol");
+                responses.add("Sirio");
+                responses.add("Alfa Centauri");
+                responses.add("Proxima Centauri");
+                break;
+            case(2):
+                responses.add("Rusia");
+                responses.add("Canadá");
+                responses.add("China");
+                responses.add("Estados Unidos");
+                break;
+            case(3):
+                responses.add("Vaticano");
+                responses.add("Perú");
+                responses.add("Andorra");
+                responses.add("San Marino");
+                break;
+            case(4):
+                responses.add("India");
+                responses.add("China");
+                responses.add("Estados Unidos");
+                responses.add("Indonesia");
+                break;
+            case(5):
+                responses.add("1918");
+                responses.add("1919");
+                responses.add("1920");
+                responses.add("1921");
+                break;
+            case(6):
+                responses.add("1945");
+                responses.add("1946");
+                responses.add("1947");
+                responses.add("1948");
+                break;
+            case(7):
+                responses.add("6");
+                responses.add("1");
+                responses.add("12");
+                responses.add("3");
+                break;
+            case(8):
+                responses.add("Amazonas");
+                responses.add("Nilo");
+                responses.add("Yangtsé");
+                responses.add("Misisipi");
+                break;
+            case(9):
+                responses.add("206");
+                responses.add("300");
+                responses.add("196");
+                responses.add("200");
+                break;
+            case(10):
+                responses.add("Fotosíntesis");
+                responses.add("Mitosis");
+                responses.add("Meiosis");
+                responses.add("Metamorfosis");
+                break;
+            case(11):
+                responses.add("3,1415");
+                responses.add("3,1416");
+                responses.add("3,1414");
+                responses.add("3,1413");
+                break;
+            case(12):
+                responses.add("Leonardo Da Vinci");
+                responses.add("Miguel Angel");
+                responses.add("Rafael");
+                responses.add("Donatello");
+                break;
+            default:
+                responses.add("Error");
+                responses.add("Error");
+                responses.add("Error");
+                responses.add("Error");
+                break;
+        }
+        return responses;
 
-    public static List<Location> getLightGrayEuroLocations(){
+
+    }
+    public static @NotNull TextComponent getComponent(String question, List<String> responses) {
+        if (responses.size() != 4) {
+            Bukkit.getLogger().warning("Error en la lista de respuestas");
+            return Component.text("Error");
+        }
+        List<Integer> numbers = new ArrayList<>(List.of(0, 1, 2, 3));
+        Collections.shuffle(numbers);
+        return Component.text("\n\n\n\n____________________________")
+                .color(TextColor.color(0xFF0027))
+                .append(Component.text(" \n\n"))
+                .append(Component.text(question).color(TextColor.color(0x00FFFF)).decorate(TextDecoration.BOLD))
+                .append(Component.text(" \n\n\n"))
+                .append(Component.text("[A:"+ responses.get(numbers.get(0)) +"]  ").color(TextColor.color(0xFFFFFF)).clickEvent(ClickEvent.runCommand("/ccranswer " + numbers.get(0))))
+                .append(Component.text("[B:"+ responses.get(numbers.get(1)) +"]  ").color(TextColor.color(0xFFFFFF)).clickEvent(ClickEvent.runCommand("/ccranswer " + numbers.get(1))))
+                .append(Component.text("[C:"+ responses.get(numbers.get(2)) +"]  ").color(TextColor.color(0xFFFFFF)).clickEvent(ClickEvent.runCommand("/ccranswer " + numbers.get(2))))
+                .append(Component.text("[D:"+ responses.get(numbers.get(3)) +"]  ").color(TextColor.color(0xFFFFFF)).clickEvent(ClickEvent.runCommand("/ccranswer " + numbers.get(3))))
+                .append(Component.text(" \n"))
+                .append(Component.text("____________________________\n\n\n\n").color(TextColor.color(0xFF0027)));
+    }
+
+    public static @NotNull List<Location> getLightGrayEuroLocations(){
         List<Location> locations = new ArrayList<>();
         MultiverseWorld world = getMVWorld("voidd");
         locations.add(new Location(world.getCBWorld(), -834, 105, 382));
@@ -53,7 +162,7 @@ public class Lists {
         locations.add(new Location(world.getCBWorld(), -839, 105, 432));
         return locations;
     }
-    public static List<Location> getYellowEuroLocations() {
+    public static @NotNull List<Location> getYellowEuroLocations() {
         List<Location> locations = new ArrayList<>();
         MultiverseWorld world = getMVWorld("voidd");
         locations.add(new Location(world.getCBWorld(), -834, 105, 524));
@@ -71,7 +180,7 @@ public class Lists {
         locations.add(new Location(world.getCBWorld(), -839, 105, 574));
         return locations;
     }
-    public static List<Location> getPinkEuroLocations() {
+    public static @NotNull List<Location> getPinkEuroLocations() {
         List<Location> locations = new ArrayList<>();
         MultiverseWorld world = getMVWorld("voidd");
 
@@ -91,7 +200,7 @@ public class Lists {
 
         return locations;
     }
-    public static List<Location> getMagentaEuroLocations() {
+    public static @NotNull List<Location> getMagentaEuroLocations() {
         List<Location> locations = new ArrayList<>();
         MultiverseWorld world = getMVWorld("voidd");
 
@@ -111,7 +220,7 @@ public class Lists {
 
         return locations;
     }
-    public static List<Location> getOrangeEuroLocations() {
+    public static @NotNull List<Location> getOrangeEuroLocations() {
         List<Location> locations = new ArrayList<>();
         MultiverseWorld world = getMVWorld("voidd");
 
@@ -131,7 +240,7 @@ public class Lists {
 
         return locations;
     }
-    public static List<Location> getGrayEuroLocations() {
+    public static @NotNull List<Location> getGrayEuroLocations() {
         ArrayList<Location> locations = new ArrayList<>();
         MultiverseWorld world = getMVWorld("voidd");
 
@@ -151,7 +260,7 @@ public class Lists {
 
         return locations;
     }
-    public static List<Location> getLimeEuroLocations() {
+    public static @NotNull List<Location> getLimeEuroLocations() {
         List<Location> locations = new ArrayList<>();
         MultiverseWorld world = getMVWorld("voidd");
 
@@ -171,7 +280,7 @@ public class Lists {
 
         return locations;
     }
-    public static List<Location> getLightBlueLocations() {
+    public static @NotNull List<Location> getLightBlueLocations() {
         List<Location> locations = new ArrayList<>();
         MultiverseWorld world = getMVWorld("voidd");
 
@@ -193,7 +302,7 @@ public class Lists {
     }
 
 
-    public static List<Location> getFinalLocations() {
+    public static @NotNull List<Location> getFinalLocations() {
         List<Location> locations = new ArrayList<>();
         MultiverseWorld world = getMVWorld("esplosion");
         locations.add(new Location(world.getCBWorld(), -250.2, 28.1, -704.5));
@@ -356,7 +465,7 @@ public class Lists {
         return locations;
     }
 
-    public static Location getFinalCenterLocation() {
+    public static @NotNull Location getFinalCenterLocation() {
         MultiverseWorld world = getMVWorld("esplosion");
         return new Location(world.getCBWorld(), -104.5, 51, -639.5);
     }
