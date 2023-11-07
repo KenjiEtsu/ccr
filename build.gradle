@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly "io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT"
+    compileOnly "io.papermc.paper:paper-api:1.20.2-R0.1-SNAPSHOT"
     compileOnly 'com.onarandombox.multiversecore:multiverse-core:4.3.9'
     compileOnly 'de.themoep.idconverter:mappings:1.2-SNAPSHOT'
 }

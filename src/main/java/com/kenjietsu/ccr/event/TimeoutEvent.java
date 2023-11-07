@@ -1,14 +1,15 @@
 package com.kenjietsu.ccr.event;
 
+import com.kenjietsu.ccr.eventManager.utils.TimerID;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 public class TimeoutEvent extends Event implements Cancellable {
-    private int eventID;
+    private final TimerID eventID;
     private boolean isCancelled;
-    public TimeoutEvent(int eventID) {
+    public TimeoutEvent(TimerID eventID) {
         this.eventID = eventID;
         this.isCancelled = false;
     }
@@ -32,7 +33,7 @@ public class TimeoutEvent extends Event implements Cancellable {
         return handlers;
     }
 
-    public int getEventID() {
+    public TimerID getEventID() {
         return eventID;
     }
 }

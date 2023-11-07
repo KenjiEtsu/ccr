@@ -21,7 +21,7 @@ public class TimerListener implements Listener {
     @EventHandler
     public void timerEnd(TimeoutEvent event) {
         switch (event.getEventID()) {
-            case 8 -> {
+            case BALON -> {
                 DodgeBallEvent dodgeBallEvent = DodgeBallEvent.getDodgeBallEvent();
                 if (dodgeBallEvent.getRedPlayers().size() > dodgeBallEvent.getBluePlayers().size()) {
                     for (Player player : dodgeBallEvent.getBluePlayers()) {
@@ -47,24 +47,24 @@ public class TimerListener implements Listener {
                     }
                 }
             }
-            case 7 -> {
+            case SPLEEF -> {
             }
-            case 6 -> {
+            case FINAL -> {
                 EventoFinalEvent eventoFinalEvent = EventoFinalEvent.getEventoFinalEvent();
                 eventoFinalEvent.winnGame();
             }
-            case 5 -> {
+            case EUROCRISTALES -> {
                 EuroCristalesEvent euroCristalesEvent = EuroCristalesEvent.getEuroCristalesEvent();
                 euroCristalesEvent.endQuestion();
             }
-            case 4 -> {
+            case GALLINA -> {
                 GallinitaEvent gallinitaEvent = GallinitaEvent.getGallinitaEvent();
                 for (GallinitaTeam team : gallinitaEvent.getGallinitaTeams()) {
                     sacrificar(team.primeraGallina());
                     sacrificar(team.segundaGallina());
                 }
             }
-            case 3 -> {
+            case NORMAL_TIMER_FREEZE -> {
                 NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), "freeze");
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     if (!player.isOp()) {
@@ -73,23 +73,23 @@ public class TimerListener implements Listener {
                     }
                 }
             }
-            case 2 -> Bukkit.getLogger().info("Timer out");
-            case 1 -> {
+            case NORMAL_TIMER -> Bukkit.getLogger().info("Timer out");
+            case POTATO -> {
                 PapaFriaEvent papaFriaEvent = PapaFriaEvent.getPapaFriaEvent();
                 papaFriaEvent.finishEvent();
+                Bukkit.getScheduler().cancelTasks(Ccr.getPlugin(Ccr.class));
                 sacrificar(papaFriaEvent.getPotater());
             }
-            case 0 -> {
+            case ESCONDITE -> {
                 Sound witherSpawn = Sound.sound(org.bukkit.Sound.ENTITY_WITHER_SPAWN.key(), Sound.Source.MASTER, 1, 1);
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     player.playSound(witherSpawn, Sound.Emitter.self());
                 }
                 EsconditeEvent.getEsconditeEvent().releaseCatcher();
             }
-            case 9 -> EsconditeEvent.getEsconditeEvent().endEvent();
-            case 10 -> {
-                EuroCristalesEvent.getEuroCristalesEvent().nextQuestion();
-            }
+            case ESCONDITE_P2 -> EsconditeEvent.getEsconditeEvent().endEvent();
+            case EUROCRISTALES_P2 -> EuroCristalesEvent.getEuroCristalesEvent().nextQuestion();
+            case EUROCRISTALES_P3 -> EuroCristalesEvent.getEuroCristalesEvent().endEvent();
         }
     }
 }

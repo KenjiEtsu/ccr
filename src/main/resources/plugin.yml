@@ -44,6 +44,16 @@ commands:
         usage: /<command>
         permission: ccrr.command.CCRanswer
         aliases: [ccranswer]
+    CCSpeed:
+        description: 'set speed'
+        usage: /<command>
+        permission: ccrr.command.CCSpeed
+        aliases: [ccspeed]
+    CCSacrificar:
+        description: 'sacrificar'
+        usage: /<command> <player>
+        permission: ccrr.command.CCSacrificar
+        aliases: [ccsacrificar]
 permissions:
     ccrr.command.CCRanswer:
         description: 'answer command'

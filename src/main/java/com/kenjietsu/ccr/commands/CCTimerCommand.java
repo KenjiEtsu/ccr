@@ -1,6 +1,7 @@
 package com.kenjietsu.ccr.commands;
 
 import com.kenjietsu.ccr.Ccr;
+import com.kenjietsu.ccr.eventManager.utils.TimerID;
 import com.kenjietsu.ccr.eventManager.utils.Timers;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -26,10 +27,10 @@ public class CCTimerCommand implements CommandExecutor {
 
 
                 if (args[3].equals("true")) {
-                    Timers timer = new Timers(Integer.parseInt(args[1]), Integer.parseInt(args[2]), 3);
+                    Timers timer = new Timers(Integer.parseInt(args[1]), Integer.parseInt(args[2]), TimerID.NORMAL_TIMER_FREEZE);
                 }
                 else if (args[3].equals("false")) {
-                    Timers timer = new Timers(Integer.parseInt(args[1]), Integer.parseInt(args[2]), 2);
+                    Timers timer = new Timers(Integer.parseInt(args[1]), Integer.parseInt(args[2]), TimerID.NORMAL_TIMER);
                 }
             }
 

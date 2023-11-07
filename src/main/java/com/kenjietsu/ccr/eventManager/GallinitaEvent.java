@@ -1,6 +1,7 @@
 package com.kenjietsu.ccr.eventManager;
 
 import com.kenjietsu.ccr.eventManager.utils.GallinitaTeam;
+import com.kenjietsu.ccr.eventManager.utils.TimerID;
 import com.kenjietsu.ccr.eventManager.utils.Timers;
 import com.kenjietsu.ccr.items.ItemManager;
 import com.kenjietsu.ccr.utils.MVCoreUtils;
@@ -43,7 +44,7 @@ public class GallinitaEvent {
             onlinePlayers.remove(j);
             onlinePlayers.remove(k);
         }
-        timer = new Timers(10, 0, 4);  // IDK, cambiar el tiempo porsi
+        timer = new Timers(10, 0, TimerID.GALLINA);  // IDK, cambiar el tiempo porsi
         startGalliniters();
     }
     public void startGalliniters(){

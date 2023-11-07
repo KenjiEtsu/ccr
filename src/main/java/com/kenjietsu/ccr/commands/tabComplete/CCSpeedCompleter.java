@@ -10,8 +10,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CCrestartCompleter implements TabCompleter {
-    private static final String[] COMMANDS = {"balon", "spleef", "eventoFinal", "freeze"};
+public class CCSpeedCompleter implements TabCompleter {
+    private static final String[] COMMANDS = {"fly", "ground", "0", "1", "2", "5"};
+    private static final String[] COMMANDS2 = {"0", "1", "2", "5"};
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!sender.isOp()) {
@@ -20,9 +21,12 @@ public class CCrestartCompleter implements TabCompleter {
         List<String> completions = new ArrayList<>();
         if (args.length == 1) {
             StringUtil.copyPartialMatches(args[0], List.of(COMMANDS), completions);
-            completions.sort(String.CASE_INSENSITIVE_ORDER);
             return completions;
         }
-        return new ArrayList<>();
+        if (args.length == 2 && (args[0].equalsIgnoreCase("ground") || args[0].equalsIgnoreCase("fly"))) {
+            StringUtil.copyPartialMatches(args[1], List.of(COMMANDS2), completions);
+            return completions;
+        }
+        return null;
     }
 }

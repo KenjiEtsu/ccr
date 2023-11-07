@@ -1,6 +1,7 @@
 package com.kenjietsu.ccr.eventManager;
 
 import com.kenjietsu.ccr.eventManager.utils.Lists;
+import com.kenjietsu.ccr.eventManager.utils.TimerID;
 import com.kenjietsu.ccr.eventManager.utils.Timers;
 import com.onarandombox.MultiverseCore.api.MultiverseWorld;
 import net.kyori.adventure.sound.Sound;
@@ -72,7 +73,7 @@ public class EventoFinalEvent {
             dItem.setGlowing(true);
         }
 
-        timer = new Timers(10, 0, 6);
+        timer = new Timers(10, 0, TimerID.FINAL);
 
     }
 

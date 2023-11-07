@@ -13,25 +13,13 @@ public class Timers {
     private int taskID;
 
 
-    public Timers(int minutes, int seconds, int eventID) {
+    public Timers(int minutes, int seconds, TimerID eventID) {
         this.minutes = minutes;
         this.seconds = seconds;
-        /** 0 = Escondite
-         *  1 = Potato
-         *  2 = Normal Timer
-         *  3 = Normal Timer Freeze
-         *  4 = gallina
-         *  5 = eurocristales
-         *  6 = final
-         *  7 = spleef
-         *  8 = balon
-         *  9 = esconditeP2
-         *  10 = eurocristalesP2
-         **/
         startTimer(eventID);
     }
 
-    public void startTimer(int eventID) {
+    public void startTimer(TimerID eventID) {
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
         scheduler.runTaskTimer(Ccr.getPlugin(Ccr.class), new TimerTask(minutes, seconds, eventID), 0L, 20L);
     }
@@ -45,7 +33,7 @@ public class Timers {
         scoreS.setScore(seconds);
         scoreM.setScore(minutes);
     }
-    public void restartTimer(int minutes, int seconds, int eventID) {
+    public void restartTimer(int minutes, int seconds, TimerID eventID) {
         stopTimer();
         this.minutes = minutes;
         this.seconds = seconds;

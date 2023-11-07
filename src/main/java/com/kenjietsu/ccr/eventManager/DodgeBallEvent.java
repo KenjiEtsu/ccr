@@ -1,6 +1,7 @@
 package com.kenjietsu.ccr.eventManager;
 
 import com.kenjietsu.ccr.Ccr;
+import com.kenjietsu.ccr.eventManager.utils.TimerID;
 import com.kenjietsu.ccr.eventManager.utils.Timers;
 import com.onarandombox.MultiverseCore.api.MultiverseWorld;
 import net.kyori.adventure.text.Component;
@@ -25,6 +26,7 @@ import java.util.Random;
 import static com.kenjietsu.ccr.utils.MVCoreUtils.getMVWorld;
 
 public class DodgeBallEvent {
+    // -447 149 736 NEW LOCATION
     private static DodgeBallEvent instance;
     private List<Player> redPlayers;
     private List<Player> bluePlayers;
@@ -114,7 +116,7 @@ public class DodgeBallEvent {
                 player.teleport(new Location(player.getWorld(), -836.5, 148.5, 478.5));
             }
         }
-        this.timer = new Timers(5, 0, 8);
+        this.timer = new Timers(5, 0, TimerID.BALON);
 
     }
 

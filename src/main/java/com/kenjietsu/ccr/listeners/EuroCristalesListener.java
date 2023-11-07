@@ -13,6 +13,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.util.Vector;
 
 import static com.kenjietsu.ccr.utils.MVCoreUtils.getMVWorld;
+import static com.kenjietsu.ccr.utils.MVCoreUtils.hasDecimalPart;
 
 public class EuroCristalesListener implements Listener {
     @EventHandler
@@ -34,90 +35,120 @@ public class EuroCristalesListener implements Listener {
         }
         EuroCristalesEvent euroCristalesEvent = EuroCristalesEvent.getEuroCristalesEvent();
         if (playerLocation.getX() < -833 && playerLocation.getX() > -842 && playerLocation.getZ() < 440 && playerLocation.getZ() > 381) {
-            int i = 0;
+            double i = 0;
             for (Location location : Lists.getLightGrayEuroLocations()) {
                 location.add(1, 0, 0);
                 Location location2 = location.clone().add(-3, 1.5, 8);
                 if (playerLocation.getY() > location.getY() && playerLocation.getY() < location2.getY()) {
                     if (playerLocation.getX() < location.getX() && playerLocation.getX() > location2.getX()) {
                         if (playerLocation.getZ() > location.getZ() && playerLocation.getZ() < location2.getZ()) {
-                            if (!euroCristalesEvent.getLightGrayCristales().get(i)) {
+                            if (!euroCristalesEvent.getLightGrayCristales().get((int) i) && hasDecimalPart(i)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getLightGrayCristales().get((int) i) && !hasDecimalPart(i)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getLightGrayCristalesFallen().get((int)i)) {
                                 continue;
                             }
                             spawnCardinalFallingGlass(location, Material.LIGHT_GRAY_STAINED_GLASS, world, 0, event.getPlayer());
-                            euroCristalesEvent.flipItemInList(0, i);
+                            euroCristalesEvent.flipItemInList(0, (int) i);
                         }
                     }
                 }
-                i++;
+                i += 0.5;
             }
         }
         if (playerLocation.getX() < -833 && playerLocation.getX() > -842 && playerLocation.getZ() < 583 && playerLocation.getZ() > 523) {
-            int i = 0;
+            double i = 0;
             for (Location location : Lists.getYellowEuroLocations()) {
                 location.add(1, 0, 0);
                 Location location2 = location.clone().add(-3, 1.5, 8);
                 if (playerLocation.getY() > location.getY() && playerLocation.getY() < location2.getY()) {
                     if (playerLocation.getX() < location.getX() && playerLocation.getX() > location2.getX()) {
                         if (playerLocation.getZ() > location.getZ() && playerLocation.getZ() < location2.getZ()) {
-                            if (!euroCristalesEvent.getYellowCristales().get(i)) {
+                            if (!euroCristalesEvent.getYellowCristales().get((int) i) && hasDecimalPart(i)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getYellowCristales().get((int) i) && !hasDecimalPart(i)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getYellowCristalesFallen().get((int)i)) {
                                 continue;
                             }
                             spawnCardinalFallingGlass(location, Material.YELLOW_STAINED_GLASS, world, 0, event.getPlayer());
-                            euroCristalesEvent.flipItemInList(1, i);
+                            euroCristalesEvent.flipItemInList(1, (int) i);
                         }
                     }
 
                 }
-                i++;
+                i += 0.5;
             }
         }
         if (playerLocation.getX() < -878 && playerLocation.getX() > -938 && playerLocation.getZ() < 486 && playerLocation.getZ() > 477) {
-            int i = 0;
+            double i = 0;
             for (Location location : Lists.getPinkEuroLocations()) {
                 Location location2 = location.clone().add(8, 1.5, 3);
                 if (playerLocation.getY() > location.getY() && playerLocation.getY() < location2.getY()) {
                     if (playerLocation.getX() > location.getX() && playerLocation.getX() < location2.getX()) {
                         if (playerLocation.getZ() > location.getZ() && playerLocation.getZ() < location2.getZ()) {
-                            if (!euroCristalesEvent.getPinkCristales().get(i)) {
+                            if (!euroCristalesEvent.getPinkCristales().get((int) i) && hasDecimalPart(i)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getPinkCristales().get((int) i) && !hasDecimalPart(i)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getPinkCristalesFallen().get((int)i)) {
                                 continue;
                             }
                             spawnCardinalFallingGlass(location, Material.PINK_STAINED_GLASS, world, 1, event.getPlayer());
-                            euroCristalesEvent.flipItemInList(2, i);
+                            euroCristalesEvent.flipItemInList(2, (int) i);
                         }
                     }
                 }
-                i++;
+                i += 0.5;
             }
         }
         if (playerLocation.getX() < -736 || playerLocation.getX() > -796 && playerLocation.getZ() < 486 ||
                 playerLocation.getZ() > 477) {
-            int i = 0;
+            double i = 0;
             for (Location location : Lists.getMagentaEuroLocations()) {
                 Location location2 = location.clone().add(8, 1.5, 3);
                 if (playerLocation.getY() > location.getY() && playerLocation.getY() < location2.getY()) {
                     if (playerLocation.getX() > location.getX() && playerLocation.getX() < location2.getX()) {
                         if (playerLocation.getZ() > location.getZ() && playerLocation.getZ() < location2.getZ()) {
-                            if (!euroCristalesEvent.getMagentaCristales().get(i)) {
+                            if (!euroCristalesEvent.getMagentaCristales().get((int) i) && hasDecimalPart(i)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getMagentaCristales().get((int) i) && !hasDecimalPart(i)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getMagentaCristalesFallen().get((int) i)) {
                                 continue;
                             }
                             spawnCardinalFallingGlass(location, Material.MAGENTA_STAINED_GLASS, world,1, event.getPlayer());
-                            euroCristalesEvent.flipItemInList(3, i);
+                            euroCristalesEvent.flipItemInList(3, (int )i);
                         }
                     }
                 }
-                i++;
+                i += 0.5;
             }
         }
         if (playerLocation.getX() < -764 && playerLocation.getX() > -814 && playerLocation.getZ() < 458 && playerLocation.getZ() > 408) {
-            int k = 0;
+            double k = 0;
             for (Location location : Lists.getOrangeEuroLocations()) {
                 location.add(1, 0, -1);
                 Location location2 = location.clone().add(-6, 1.5, 6);
                 if (playerLocation.getY() > location.getY() && playerLocation.getY() < location2.getY()) {
                     if (playerLocation.getX() < location.getX() && playerLocation.getX() > location2.getX()) {
                         if (playerLocation.getZ() > location.getZ() && playerLocation.getZ() < location2.getZ()) {
-                            if (!euroCristalesEvent.getOrangeCristales().get(k)) {
+                            if (!euroCristalesEvent.getOrangeCristales().get((int) k) && hasDecimalPart(k)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getOrangeCristales().get((int) k) && !hasDecimalPart(k)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getOrangeCristalesFallen().get((int)k)) {
                                 continue;
                             }
                             event.getPlayer().setVelocity(new Vector(0, -0.1, 0));
@@ -139,23 +170,29 @@ public class EuroCristalesListener implements Listener {
                                     location.add(2, 0, 1);
                                     }
                             }, 7L);
-                            euroCristalesEvent.flipItemInList(4, k);
+                            euroCristalesEvent.flipItemInList(4, (int) k);
                         }
                     }
                 }
-                k++;
+                k += 0.5;
             }
         }
         // -764 555, -814 505
         if (playerLocation.getX() < -764 && playerLocation.getX() > -814 && playerLocation.getZ() < 555 && playerLocation.getZ() > 505) {
-            int k = 0;
+            double k = 0;
             for (Location location : Lists.getLightBlueLocations()) {
                 location.add(2, 0, 1);
                 Location location2 = location.clone().add(-7, 1.5, -7);
                 if (playerLocation.getY() > location.getY() && playerLocation.getY() < location2.getY()) {
                     if (playerLocation.getX() < location.getX() && playerLocation.getX() > location2.getX()) {
                         if (playerLocation.getZ() < location.getZ() && playerLocation.getZ() > location2.getZ()) {
-                            if (!euroCristalesEvent.getLightBlueCristales().get(k)) {
+                            if (!euroCristalesEvent.getLightBlueCristales().get((int) k) && hasDecimalPart(k)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getLightBlueCristales().get((int) k) && !hasDecimalPart(k)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getLightBlueCristalesFallen().get((int)k)) {
                                 continue;
                             }
                             event.getPlayer().setVelocity(new Vector(0, -0.1, 0));
@@ -178,22 +215,28 @@ public class EuroCristalesListener implements Listener {
                                     location.add(-1, 0, 2);
                                 }
                             }, 7L);
-                            euroCristalesEvent.flipItemInList(7, k);
+                            euroCristalesEvent.flipItemInList(7, (int) k);
                         }
                     }
                 }
-                k++;
+                k += 0.5;
             }
         }
         if ( playerLocation.getX() < -861 && playerLocation.getX() > -911 && playerLocation.getZ() < 458 && playerLocation.getZ() > 408) {
-            int k = 0;
+            double k = 0;
             for (Location location : Lists.getGrayEuroLocations()) {
                 location.add(-1, 0, 0);
                 Location location2 = location.clone().add(7, 1.5, 7);
                 if (playerLocation.getY() > location.getY() && playerLocation.getY() < location2.getY()) {
                     if (playerLocation.getX() > location.getX() && playerLocation.getX() < location2.getX()) {
                         if (playerLocation.getZ() > location.getZ() && playerLocation.getZ() < location2.getZ()) {
-                            if (!euroCristalesEvent.getGrayCristales().get(k)) {
+                            if (!euroCristalesEvent.getGrayCristales().get((int) k) && hasDecimalPart(k)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getGrayCristales().get((int) k) && !hasDecimalPart(k)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getGrayCristalesFallen().get((int)k)) {
                                 continue;
                             }
                             event.getPlayer().setVelocity(new Vector(0, -0.1, 0));
@@ -215,22 +258,28 @@ public class EuroCristalesListener implements Listener {
                                     location.add(1, 0, -2);
                                 }
                             }, 7L);
-                            euroCristalesEvent.flipItemInList(5, k);
+                            euroCristalesEvent.flipItemInList(5, (int) k);
                         }
                     }
                 }
-                k++;
+                k += 0.5;
             }
         }
         if (playerLocation.getX() > -911 && playerLocation.getX() < -861 && playerLocation.getZ() < 555 && playerLocation.getZ() > 505) {
-            int k = 0;
+            double k = 0;
             for (Location location : Lists.getLimeEuroLocations()) {
                 location.add(0, 0, 2);
                 Location location2 = location.clone().add(7, 1.5, -7);
                 if (playerLocation.getY() > location.getY() && playerLocation.getY() < location2.getY()) {
                     if (playerLocation.getX() > location.getX() && playerLocation.getX() < location2.getX()) {
                         if (playerLocation.getZ() < location.getZ() && playerLocation.getZ() > location2.getZ()) {
-                            if (!euroCristalesEvent.getLimeCristales().get(k)) {
+                            if (!euroCristalesEvent.getLimeCristales().get((int) k) && hasDecimalPart(k)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getLimeCristales().get((int) k) && !hasDecimalPart(k)) {
+                                continue;
+                            }
+                            if (euroCristalesEvent.getLimeCristalesFallen().get((int)k)) {
                                 continue;
                             }
                             event.getPlayer().setVelocity(new Vector(0, -0.1, 0));
@@ -252,11 +301,11 @@ public class EuroCristalesListener implements Listener {
                                     location.add(-2, 0, -1);
                                 }
                             }, 7L);
-                            euroCristalesEvent.flipItemInList(6, k);
+                            euroCristalesEvent.flipItemInList(6, (int) k);
                         }
                     }
                 }
-                k++;
+                k += 0.5;
             }
         }
 
@@ -298,8 +347,10 @@ public class EuroCristalesListener implements Listener {
 
     public static void spawnFallingGlass(Location location, Material material, World world) {
         location.getBlock().setType(Material.AIR);
-        FallingBlock fallingBlock = world.spawnFallingBlock(location, material.createBlockData());
-        fallingBlock.setDropItem(false);
+        FallingBlock fallingBlock = world.spawn(location, FallingBlock.class, (fB) -> {
+            fB.setBlockData(material.createBlockData());
+            fB.setDropItem(false);
+        } );
         fallingBlock.setVelocity(new Vector(0, -0.25, 0));
 
         world.spawnParticle(Particle.BLOCK_CRACK, location, 10, 0.5, 0.5, 0.5, material.createBlockData());

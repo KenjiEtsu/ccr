@@ -1,5 +1,6 @@
 package com.kenjietsu.ccr.eventManager;
 
+import com.kenjietsu.ccr.eventManager.utils.TimerID;
 import com.kenjietsu.ccr.eventManager.utils.Timers;
 import com.kenjietsu.ccr.items.ItemManager;
 import org.bukkit.GameMode;
@@ -25,13 +26,13 @@ public class EsconditeEvent {
 
         player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(3600, 1));
         player.setGameMode(GameMode.ADVENTURE);
-        this.timer = new Timers(0, 20, 0);  //3 Minutes
+        this.timer = new Timers(0, 20, TimerID.ESCONDITE);  //3 Minutes
     }
     public void releaseCatcher() {
         ItemStack item = ItemManager.catcherItem;
         catcher.getInventory().addItem(item);
 
-                     this.timer2 = new Timers(5, 0, 9);
+                     this.timer2 = new Timers(5, 0, TimerID.ESCONDITE_P2);
 
 
 

@@ -39,6 +39,9 @@ public class CCRestartCommand implements CommandExecutor {
                 }
             }
         }
+        else if (args[0].equals("freeze")) {
+            keyCancel(args[0]);
+        }
 
         TextComponent message = Component.text("El evento ha sido reiniciado");
         Bukkit.broadcast(message);

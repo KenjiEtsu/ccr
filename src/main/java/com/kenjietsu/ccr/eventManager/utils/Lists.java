@@ -31,8 +31,8 @@ public class Lists {
         questions.put(8,"Cual es el rio mas largo del mundo?");
         questions.put(9,"Cuantos huesos tiene el cuerpo humano?");
         questions.put(10,"Como se llama el proceso por el cual las plantas se alimentan?");
-        questions.put(11,"Cuanto vale el nimero pi?(truncando)");
-        questions.put(12,"Quien pinto La iltima cena?");
+        questions.put(11,"Cuanto vale el numero pi?(truncando)");
+        questions.put(12,"Quien pinto La ultima cena?");
 
 
 
@@ -41,92 +41,92 @@ public class Lists {
     public static @NotNull List<String> getResponses(Integer i) {
         List<String> responses = new ArrayList<>();
         switch (i) {
-            case(1):
+            case (1) -> {
                 responses.add("Sol");
                 responses.add("Sirio");
                 responses.add("Alfa Centauri");
                 responses.add("Proxima Centauri");
-                break;
-            case(2):
+            }
+            case (2) -> {
                 responses.add("Rusia");
-                responses.add("Canadá");
+                responses.add("Canada");
                 responses.add("China");
                 responses.add("Estados Unidos");
-                break;
-            case(3):
+            }
+            case (3) -> {
                 responses.add("Vaticano");
-                responses.add("Perú");
+                responses.add("Peru");
                 responses.add("Andorra");
                 responses.add("San Marino");
-                break;
-            case(4):
+            }
+            case (4) -> {
                 responses.add("India");
                 responses.add("China");
                 responses.add("Estados Unidos");
                 responses.add("Indonesia");
-                break;
-            case(5):
+            }
+            case (5) -> {
                 responses.add("1918");
                 responses.add("1919");
                 responses.add("1920");
                 responses.add("1921");
-                break;
-            case(6):
+            }
+            case (6) -> {
                 responses.add("1945");
                 responses.add("1946");
                 responses.add("1947");
                 responses.add("1948");
-                break;
-            case(7):
+            }
+            case (7) -> {
                 responses.add("6");
                 responses.add("1");
                 responses.add("12");
                 responses.add("3");
-                break;
-            case(8):
+            }
+            case (8) -> {
                 responses.add("Amazonas");
                 responses.add("Nilo");
-                responses.add("Yangtsé");
+                responses.add("Yangtse");
                 responses.add("Misisipi");
-                break;
-            case(9):
+            }
+            case (9) -> {
                 responses.add("206");
                 responses.add("300");
                 responses.add("196");
                 responses.add("200");
-                break;
-            case(10):
-                responses.add("Fotosíntesis");
+            }
+            case (10) -> {
+                responses.add("Fotosintesis");
                 responses.add("Mitosis");
                 responses.add("Meiosis");
                 responses.add("Metamorfosis");
-                break;
-            case(11):
+            }
+            case (11) -> {
                 responses.add("3,1415");
                 responses.add("3,1416");
                 responses.add("3,1414");
                 responses.add("3,1413");
-                break;
-            case(12):
+            }
+            case (12) -> {
                 responses.add("Leonardo Da Vinci");
                 responses.add("Miguel Angel");
                 responses.add("Rafael");
                 responses.add("Donatello");
-                break;
-            default:
+            }
+            default -> {
                 responses.add("Error");
                 responses.add("Error");
                 responses.add("Error");
                 responses.add("Error");
-                break;
+            }
         }
         return responses;
 
 
     }
     public static @NotNull TextComponent getComponent(String question, List<String> responses) {
-        if (responses.size() != 4) {
-            Bukkit.getLogger().warning("Error en la lista de respuestas");
+        if (responses.size() != 4 || question == null) {
+            Bukkit.getLogger().warning("Error en la lista de respuestas o pregunta");
             return Component.text("Error");
         }
         List<Integer> numbers = new ArrayList<>(List.of(0, 1, 2, 3));
@@ -148,36 +148,46 @@ public class Lists {
         List<Location> locations = new ArrayList<>();
         MultiverseWorld world = getMVWorld("voidd");
         locations.add(new Location(world.getCBWorld(), -834, 105, 382));
-        locations.add(new Location(world.getCBWorld(), -834, 105, 392));
-        locations.add(new Location(world.getCBWorld(), -834, 105, 402));
-        locations.add(new Location(world.getCBWorld(), -834, 105, 412));
-        locations.add(new Location(world.getCBWorld(), -834, 105, 422));
-        locations.add(new Location(world.getCBWorld(), -834, 105, 432));
-
         locations.add(new Location(world.getCBWorld(), -839, 105, 382));
+
+        locations.add(new Location(world.getCBWorld(), -834, 105, 392));
         locations.add(new Location(world.getCBWorld(), -839, 105, 392));
+
+        locations.add(new Location(world.getCBWorld(), -834, 105, 402));
         locations.add(new Location(world.getCBWorld(), -839, 105, 402));
+
+        locations.add(new Location(world.getCBWorld(), -834, 105, 412));
         locations.add(new Location(world.getCBWorld(), -839, 105, 412));
+
+        locations.add(new Location(world.getCBWorld(), -834, 105, 422));
         locations.add(new Location(world.getCBWorld(), -839, 105, 422));
+
+        locations.add(new Location(world.getCBWorld(), -834, 105, 432));
         locations.add(new Location(world.getCBWorld(), -839, 105, 432));
+
         return locations;
     }
     public static @NotNull List<Location> getYellowEuroLocations() {
         List<Location> locations = new ArrayList<>();
         MultiverseWorld world = getMVWorld("voidd");
         locations.add(new Location(world.getCBWorld(), -834, 105, 524));
-        locations.add(new Location(world.getCBWorld(), -834, 105, 534));
-        locations.add(new Location(world.getCBWorld(), -834, 105, 544));
-        locations.add(new Location(world.getCBWorld(), -834, 105, 554));
-        locations.add(new Location(world.getCBWorld(), -834, 105, 564));
-        locations.add(new Location(world.getCBWorld(), -834, 105, 574));
-
         locations.add(new Location(world.getCBWorld(), -839, 105, 524));
+
+        locations.add(new Location(world.getCBWorld(), -834, 105, 534));
         locations.add(new Location(world.getCBWorld(), -839, 105, 534));
+
+        locations.add(new Location(world.getCBWorld(), -834, 105, 544));
         locations.add(new Location(world.getCBWorld(), -839, 105, 544));
+
+        locations.add(new Location(world.getCBWorld(), -834, 105, 554));
         locations.add(new Location(world.getCBWorld(), -839, 105, 554));
+
+        locations.add(new Location(world.getCBWorld(), -834, 105, 564));
         locations.add(new Location(world.getCBWorld(), -839, 105, 564));
+
+        locations.add(new Location(world.getCBWorld(), -834, 105, 574));
         locations.add(new Location(world.getCBWorld(), -839, 105, 574));
+
         return locations;
     }
     public static @NotNull List<Location> getPinkEuroLocations() {
@@ -185,17 +195,21 @@ public class Lists {
         MultiverseWorld world = getMVWorld("voidd");
 
         locations.add(new Location(world.getCBWorld(), -937, 105, 478));
-        locations.add(new Location(world.getCBWorld(), -927, 105, 478));
-        locations.add(new Location(world.getCBWorld(), -917, 105, 478));
-        locations.add(new Location(world.getCBWorld(), -907, 105, 478));
-        locations.add(new Location(world.getCBWorld(), -897, 105, 478));
-        locations.add(new Location(world.getCBWorld(), -887, 105, 478));
-
         locations.add(new Location(world.getCBWorld(), -937, 105, 483));
+
+        locations.add(new Location(world.getCBWorld(), -927, 105, 478));
         locations.add(new Location(world.getCBWorld(), -927, 105, 483));
+
+        locations.add(new Location(world.getCBWorld(), -917, 105, 478));
         locations.add(new Location(world.getCBWorld(), -917, 105, 483));
+
+        locations.add(new Location(world.getCBWorld(), -907, 105, 478));
         locations.add(new Location(world.getCBWorld(), -907, 105, 483));
+
+        locations.add(new Location(world.getCBWorld(), -897, 105, 478));
         locations.add(new Location(world.getCBWorld(), -897, 105, 483));
+
+        locations.add(new Location(world.getCBWorld(), -887, 105, 478));
         locations.add(new Location(world.getCBWorld(), -887, 105, 483));
 
         return locations;
@@ -205,17 +219,21 @@ public class Lists {
         MultiverseWorld world = getMVWorld("voidd");
 
         locations.add(new Location(world.getCBWorld(), -795, 105, 478));
-        locations.add(new Location(world.getCBWorld(), -785, 105, 478));
-        locations.add(new Location(world.getCBWorld(), -775, 105, 478));
-        locations.add(new Location(world.getCBWorld(), -765, 105, 478));
-        locations.add(new Location(world.getCBWorld(), -755, 105, 478));
-        locations.add(new Location(world.getCBWorld(), -745, 105, 478));
-
         locations.add(new Location(world.getCBWorld(), -795, 105, 483));
+
+        locations.add(new Location(world.getCBWorld(), -785, 105, 478));
         locations.add(new Location(world.getCBWorld(), -785, 105, 483));
+
+        locations.add(new Location(world.getCBWorld(), -775, 105, 478));
         locations.add(new Location(world.getCBWorld(), -775, 105, 483));
+
+        locations.add(new Location(world.getCBWorld(), -765, 105, 478));
         locations.add(new Location(world.getCBWorld(), -765, 105, 483));
+
+        locations.add(new Location(world.getCBWorld(), -755, 105, 478));
         locations.add(new Location(world.getCBWorld(), -755, 105, 483));
+
+        locations.add(new Location(world.getCBWorld(), -745, 105, 478));
         locations.add(new Location(world.getCBWorld(), -745, 105, 483));
 
         return locations;
@@ -225,17 +243,21 @@ public class Lists {
         MultiverseWorld world = getMVWorld("voidd");
 
         locations.add(new Location(world.getCBWorld(), -764, 105, 413));
-        locations.add(new Location(world.getCBWorld(), -772, 105, 421));
-        locations.add(new Location(world.getCBWorld(), -780, 105, 429));
-        locations.add(new Location(world.getCBWorld(), -788, 105, 437));
-        locations.add(new Location(world.getCBWorld(), -796, 105, 445));
-        locations.add(new Location(world.getCBWorld(), -804, 105, 453));
-
         locations.add(new Location(world.getCBWorld(), -768, 105, 409));
+
+        locations.add(new Location(world.getCBWorld(), -772, 105, 421));
         locations.add(new Location(world.getCBWorld(), -776, 105, 417));
+
+        locations.add(new Location(world.getCBWorld(), -780, 105, 429));
         locations.add(new Location(world.getCBWorld(), -784, 105, 425));
+
+        locations.add(new Location(world.getCBWorld(), -788, 105, 437));
         locations.add(new Location(world.getCBWorld(), -792, 105, 433));
+
+        locations.add(new Location(world.getCBWorld(), -796, 105, 445));
         locations.add(new Location(world.getCBWorld(), -800, 105, 441));
+
+        locations.add(new Location(world.getCBWorld(), -804, 105, 453));
         locations.add(new Location(world.getCBWorld(), -808, 105, 449));
 
         return locations;
@@ -245,17 +267,21 @@ public class Lists {
         MultiverseWorld world = getMVWorld("voidd");
 
         locations.add(new Location(world.getCBWorld(), -906, 105, 408));
-        locations.add(new Location(world.getCBWorld(), -898, 105, 416));
-        locations.add(new Location(world.getCBWorld(), -890, 105, 424));
-        locations.add(new Location(world.getCBWorld(), -882, 105, 432));
-        locations.add(new Location(world.getCBWorld(), -874, 105, 440));
-        locations.add(new Location(world.getCBWorld(), -866, 105, 448));
-
         locations.add(new Location(world.getCBWorld(), -910, 105, 412));
+
+        locations.add(new Location(world.getCBWorld(), -898, 105, 416));
         locations.add(new Location(world.getCBWorld(), -902, 105, 420));
+
+        locations.add(new Location(world.getCBWorld(), -890, 105, 424));
         locations.add(new Location(world.getCBWorld(), -894, 105, 428));
+
+        locations.add(new Location(world.getCBWorld(), -882, 105, 432));
         locations.add(new Location(world.getCBWorld(), -886, 105, 436));
+
+        locations.add(new Location(world.getCBWorld(), -874, 105, 440));
         locations.add(new Location(world.getCBWorld(), -878, 105, 444));
+
+        locations.add(new Location(world.getCBWorld(), -866, 105, 448));
         locations.add(new Location(world.getCBWorld(), -870, 105, 452));
 
         return locations;
@@ -265,17 +291,21 @@ public class Lists {
         MultiverseWorld world = getMVWorld("voidd");
 
         locations.add(new Location(world.getCBWorld(), -911, 105, 550));
-        locations.add(new Location(world.getCBWorld(), -903, 105, 542));
-        locations.add(new Location(world.getCBWorld(), -895, 105, 534));
-        locations.add(new Location(world.getCBWorld(), -887, 105, 526));
-        locations.add(new Location(world.getCBWorld(), -879, 105, 518));
-        locations.add(new Location(world.getCBWorld(), -871, 105, 510));
-
         locations.add(new Location(world.getCBWorld(), -907, 105, 554));
+
+        locations.add(new Location(world.getCBWorld(), -903, 105, 542));
         locations.add(new Location(world.getCBWorld(), -899, 105, 546));
+
+        locations.add(new Location(world.getCBWorld(), -895, 105, 534));
         locations.add(new Location(world.getCBWorld(), -891, 105, 538));
+
+        locations.add(new Location(world.getCBWorld(), -887, 105, 526));
         locations.add(new Location(world.getCBWorld(), -883, 105, 530));
+
+        locations.add(new Location(world.getCBWorld(), -879, 105, 518));
         locations.add(new Location(world.getCBWorld(), -875, 105, 522));
+
+        locations.add(new Location(world.getCBWorld(), -871, 105, 510));
         locations.add(new Location(world.getCBWorld(), -867, 105, 514));
 
         return locations;
@@ -285,17 +315,21 @@ public class Lists {
         MultiverseWorld world = getMVWorld("voidd");
 
         locations.add(new Location(world.getCBWorld(), -769, 105, 555));
-        locations.add(new Location(world.getCBWorld(), -777, 105, 547));
-        locations.add(new Location(world.getCBWorld(), -785, 105, 539));
-        locations.add(new Location(world.getCBWorld(), -793, 105, 531));
-        locations.add(new Location(world.getCBWorld(), -801, 105, 523));
-        locations.add(new Location(world.getCBWorld(), -809, 105, 515));
-
         locations.add(new Location(world.getCBWorld(), -765, 105, 551));
+
+        locations.add(new Location(world.getCBWorld(), -777, 105, 547));
         locations.add(new Location(world.getCBWorld(), -773, 105, 543));
+
+        locations.add(new Location(world.getCBWorld(), -785, 105, 539));
         locations.add(new Location(world.getCBWorld(), -781, 105, 535));
+
+        locations.add(new Location(world.getCBWorld(), -793, 105, 531));
         locations.add(new Location(world.getCBWorld(), -789, 105, 527));
+
+        locations.add(new Location(world.getCBWorld(), -801, 105, 523));
         locations.add(new Location(world.getCBWorld(), -797, 105, 519));
+
+        locations.add(new Location(world.getCBWorld(), -809, 105, 515));
         locations.add(new Location(world.getCBWorld(), -805, 105, 511));
 
         return locations;

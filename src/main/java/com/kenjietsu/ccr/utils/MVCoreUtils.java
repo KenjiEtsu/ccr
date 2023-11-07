@@ -11,4 +11,7 @@ public class MVCoreUtils {
         MVWorldManager worldManager = core.getMVWorldManager();
         return worldManager.getMVWorld(worldName);
     }
+    public static boolean hasDecimalPart(double floatNum) {
+        return floatNum != (int) floatNum;
+    }
 }

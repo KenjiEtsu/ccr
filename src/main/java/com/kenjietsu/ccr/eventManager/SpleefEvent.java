@@ -1,6 +1,7 @@
 package com.kenjietsu.ccr.eventManager;
 
 import com.kenjietsu.ccr.Ccr;
+import com.kenjietsu.ccr.eventManager.utils.TimerID;
 import com.kenjietsu.ccr.eventManager.utils.Timers;
 import com.onarandombox.MultiverseCore.api.MultiverseWorld;
 import net.kyori.adventure.text.Component;
@@ -107,7 +108,7 @@ public class SpleefEvent {
         player2.getInventory().setHeldItemSlot(0);
         player2.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 6000,1 ,false ,false));
 
-        this.timer = new Timers(3, 0, 7);
+        this.timer = new Timers(3, 0, TimerID.SPLEEF);
 
         String message = player1.getName() + " vs " + player2.getName();
         this.bossBar = Bukkit.createBossBar(message, org.bukkit.boss.BarColor.BLUE, org.bukkit.boss.BarStyle.SOLID);

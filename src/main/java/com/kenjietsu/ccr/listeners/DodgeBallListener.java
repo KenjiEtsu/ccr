@@ -9,6 +9,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByBlockEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
+import java.util.Objects;
+
 import static com.kenjietsu.ccr.eventManager.DodgeBallEvent.isDodgeEventOn;
 import static com.kenjietsu.ccr.utils.MainEventUtils.sacrificar;
 
@@ -50,24 +52,25 @@ public class DodgeBallListener implements Listener {
     @EventHandler
     public void onBlockHit(EntityDamageByBlockEvent event) {
         if (event.getEntity() instanceof Player player) {
-            if (event.getDamager().getType() == Material.LAVA) {
-                if (!isDodgeEventOn()) {
-                    return;
-                }
-                DodgeBallEvent dodgeBallEvent = DodgeBallEvent.getDodgeBallEvent();
-
-                if(dodgeBallEvent.getRedPlayers().contains(player)) {
-                    dodgeBallEvent.deleteRedPlayers(player);
-                    sacrificar(player);
-
-                }
-                if(dodgeBallEvent.getBluePlayers().contains(player)) {
-                    dodgeBallEvent.deleteBluePlayers(player);
-                    sacrificar(player);
-                }
-
-                event.setCancelled(true);
+            if (Objects.requireNonNull(event.getDamager()).getType() != Material.LAVA) {
+                return;
             }
+            if (!isDodgeEventOn()) {
+                return;
+            }
+            DodgeBallEvent dodgeBallEvent = DodgeBallEvent.getDodgeBallEvent();
+
+            if(dodgeBallEvent.getRedPlayers().contains(player)) {
+                dodgeBallEvent.deleteRedPlayers(player);
+                sacrificar(player);
+
+            }
+            if(dodgeBallEvent.getBluePlayers().contains(player)) {
+                dodgeBallEvent.deleteBluePlayers(player);
+                sacrificar(player);
+            }
+
+            event.setCancelled(true);
         }
     }
 
