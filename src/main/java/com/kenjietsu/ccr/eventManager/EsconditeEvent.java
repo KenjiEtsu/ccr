@@ -4,6 +4,7 @@ import com.kenjietsu.ccr.eventManager.utils.TimerID;
 import com.kenjietsu.ccr.eventManager.utils.Timers;
 import com.kenjietsu.ccr.items.ItemManager;
 import org.bukkit.GameMode;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
@@ -31,8 +32,11 @@ public class EsconditeEvent {
     public void releaseCatcher() {
         ItemStack item = ItemManager.catcherItem;
         catcher.getInventory().addItem(item);
+        for (Player player : catcher.getWorld().getPlayers()) {
+            player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 0.5F);
+        }
 
-                     this.timer2 = new Timers(5, 0, TimerID.ESCONDITE_P2);
+        this.timer2 = new Timers(5, 0, TimerID.ESCONDITE_P2);
 
 
 

@@ -24,23 +24,16 @@ public class CCRestartCommand implements CommandExecutor {
             sender.sendMessage("No hay argumentos");
             return true;
         }
-        if (args[0].equals("balon")) {
-            keyCancel(args[0]);
-
-        } else if (args[0].equals("spleef")) {
-            keyCancel(args[0]);
-        }
-        else  if (args[0].equals("eventoFinal")){
-
-            MultiverseWorld world = getMVWorld("esplosion");
-            for (Entity entity : world.getCBWorld().getEntities()) {
-                if (entity instanceof Item) {
-                    entity.remove();
+        switch (args[0]) {
+            case "balon", "spleef", "freeze" -> keyCancel(args[0]);
+            case "eventoFinal" -> {
+                MultiverseWorld world = getMVWorld("esplosion");
+                for (Entity entity : world.getCBWorld().getEntities()) {
+                    if (entity instanceof Item) {
+                        entity.remove();
+                    }
                 }
             }
-        }
-        else if (args[0].equals("freeze")) {
-            keyCancel(args[0]);
         }
 
         TextComponent message = Component.text("El evento ha sido reiniciado");

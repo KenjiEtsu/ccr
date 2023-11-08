@@ -49,7 +49,6 @@ public class DodgeBallEvent {
         List<Player> onlinePlayers =  world.getCBWorld().getPlayers();
 
         NamespacedKey key = new NamespacedKey(Ccr.getPlugin(Ccr.class), "balon");
-
         for (Player player : onlinePlayers) {
             PersistentDataContainer container = player.getPersistentDataContainer();
             if (container.has(key, PersistentDataType.STRING)) {
