@@ -1,6 +1,7 @@
 package com.kenjietsu.ccr.eventManager;
 
 import com.kenjietsu.ccr.Ccr;
+import com.kenjietsu.ccr.eventManager.utils.EuroCristalesPlayerData;
 import com.kenjietsu.ccr.eventManager.utils.Lists;
 import com.kenjietsu.ccr.eventManager.utils.TimerID;
 import com.kenjietsu.ccr.eventManager.utils.Timers;
@@ -30,48 +31,24 @@ public class EuroCristalesEvent {
 
     private static EuroCristalesEvent instance;
 
-    private static List<Boolean> lightGrayCristales;
-    private static List<Boolean> lightGrayCristalesFallen;
-    private static Player lightGrayPlayer;
-    private static Boolean lightGrayAnsweredCorrectly;
-    private static List<Boolean> yellowCristales;
-    private static List<Boolean> yellowCristalesFallen;
-    private static Player yellowPlayer;
-    private static Boolean yellowAnsweredCorrectly;
-    private static List<Boolean> pinkCristales;
-    private static List<Boolean> pinkCristalesFallen;
-    private static Player pinkPlayer;
-    private static Boolean pinkAnsweredCorrectly;
-    private static List<Boolean> magentaCristales;
-    private static List<Boolean> magentaCristalesFallen;
-    private static Player magentaPlayer;
-    private static Boolean magentaAnsweredCorrectly;
-    private static List<Boolean> orangeCristales;
-    private static List<Boolean> orangeCristalesFallen;
-    private static Player orangePlayer;
-    private static Boolean orangeAnsweredCorrectly;
-    private static List<Boolean> grayCristales;
-    private static List<Boolean> grayCristalesFallen;
-    private static Player grayPlayer;
-    private static Boolean grayAnsweredCorrectly;
-    private static List<Boolean> limeCristales;
-    private static List<Boolean> limeCristalesFallen;
-    private static Player limePlayer;
-    private static Boolean limeAnsweredCorrectly;
-    private static List<Boolean> lightBlueCristales;
-    private static List<Boolean> lightBlueCristalesFallen;
-    private static Player lightBluePlayer;
-    private static Boolean lightBlueAnsweredCorrectly;
+    private static EuroCristalesPlayerData lightGrayPlayer;
+    private static EuroCristalesPlayerData yellowPlayer;
+    private static EuroCristalesPlayerData pinkPlayer;
+    private static EuroCristalesPlayerData magentaPlayer;
+    private static EuroCristalesPlayerData orangePlayer;
+    private static EuroCristalesPlayerData grayPlayer;
+    private static EuroCristalesPlayerData limePlayer;
+    private static EuroCristalesPlayerData lightBluePlayer;
 
 
-    private static List<Player> gamePlayers;
+    private static List<EuroCristalesPlayerData> gamePlayers;
     private static Map<Integer, String> questions;
     private static int currentQuestion;
     private static List<Integer> questionListIndex;
 
     private static Timers timer;
 
-    public List<Player> getPlayers() {
+    public List<EuroCristalesPlayerData> getPlayers() {
         return gamePlayers;
     }
     public void removePlayer(Player player) {
@@ -83,28 +60,28 @@ public class EuroCristalesEvent {
     }
 
     public List<Boolean> getLightGrayCristales() {
-        return lightGrayCristales;
+        return lightGrayPlayer.cristales;
     }
     public  List<Boolean> getYellowCristales() {
-        return yellowCristales;
+        return yellowPlayer.cristales;
     }
     public  List<Boolean> getPinkCristales() {
-        return pinkCristales;
+        return pinkPlayer.cristales;
     }
     public  List<Boolean> getMagentaCristales() {
-        return magentaCristales;
+        return magentaPlayer.cristales;
     }
     public List<Boolean> getOrangeCristales() {
-        return orangeCristales;
+        return orangePlayer.cristales;
     }
     public List<Boolean> getGrayCristales() {
-        return grayCristales;
+        return grayPlayer.cristales;
     }
     public List<Boolean> getLimeCristales() {
-        return limeCristales;
+        return limePlayer.cristales;
     }
     public List<Boolean> getLightBlueCristales() {
-        return lightBlueCristales;
+        return lightBluePlayer.cristales;
     }
 
 
@@ -122,14 +99,14 @@ public class EuroCristalesEvent {
         refillCristals();
         for (int i = 0; i < 6; i++) {
             //generate random bool
-            lightGrayCristales.add(Math.random() < 0.5);
-            yellowCristales.add(Math.random() < 0.5);
-            pinkCristales.add(Math.random() < 0.5);
-            magentaCristales.add(Math.random() < 0.5);
-            orangeCristales.add(Math.random() < 0.5);
-            grayCristales.add(Math.random() < 0.5);
-            limeCristales.add(Math.random() < 0.5);
-            lightBlueCristales.add(Math.random() < 0.5);
+            lightGrayPlayer.cristales.add(Math.random() < 0.5);
+            yellowPlayer.cristales.add(Math.random() < 0.5);
+            pinkPlayer.cristales.add(Math.random() < 0.5);
+            magentaPlayer.cristales.add(Math.random() < 0.5);
+            orangePlayer.cristales.add(Math.random() < 0.5);
+            grayPlayer.cristales.add(Math.random() < 0.5);
+            limePlayer.cristales.add(Math.random() < 0.5);
+            lightBluePlayer.cristales.add(Math.random() < 0.5);
         }
 
         //duplicate lists but if true false... at the end
@@ -140,7 +117,10 @@ public class EuroCristalesEvent {
         Sound sound2 = Sound.sound(org.bukkit.Sound.BLOCK_NOTE_BLOCK_PLING.key(), Sound.Source.MASTER, 1F, 0.84F);
         Sound sound3 = Sound.sound(org.bukkit.Sound.BLOCK_NOTE_BLOCK_PLING.key(), Sound.Source.MASTER, 1F, 0.89F);
 
+        TextComponent component = Lists.getEurocristalesGameInfo();
+
         for (Player player : players) {
+            player.sendMessage(component);
             player.playSound(sound);
             Bukkit.getScheduler().runTaskLater(Ccr.getPlugin(Ccr.class), () -> {
                 player.playSound(sound1);
@@ -176,39 +156,39 @@ public class EuroCristalesEvent {
         }
         questionListIndex = new ArrayList<>(questions.keySet());
         Collections.shuffle(questionListIndex);
-        timer = new Timers(0, 20, TimerID.EUROCRISTALES_P2);
+        timer = new Timers(0, 1, TimerID.EUROCRISTALES_P2); //20s
     }
 
     public List<Boolean> getLightGrayCristalesFallen() {
-        return lightGrayCristalesFallen;
+        return lightGrayPlayer.cristalesFallen;
     }
 
     public List<Boolean> getYellowCristalesFallen() {
-        return yellowCristalesFallen;
+        return yellowPlayer.cristalesFallen;
     }
 
     public List<Boolean> getPinkCristalesFallen() {
-        return pinkCristalesFallen;
+        return pinkPlayer.cristalesFallen;
     }
 
     public List<Boolean> getMagentaCristalesFallen() {
-        return magentaCristalesFallen;
+        return magentaPlayer.cristalesFallen;
     }
 
     public List<Boolean> getOrangeCristalesFallen() {
-        return orangeCristalesFallen;
+        return orangePlayer.cristalesFallen;
     }
 
     public List<Boolean> getGrayCristalesFallen() {
-        return grayCristalesFallen;
+        return grayPlayer.cristalesFallen;
     }
 
     public List<Boolean> getLimeCristalesFallen() {
-        return limeCristalesFallen;
+        return limePlayer.cristalesFallen;
     }
 
     public List<Boolean> getLightBlueCristalesFallen() {
-        return lightBlueCristalesFallen;
+        return lightBluePlayer.cristalesFallen;
     }
 
     public static void refillCristals() {
@@ -311,106 +291,77 @@ public class EuroCristalesEvent {
 
     }
     private void initValues() {
-        lightGrayCristales = new ArrayList<>();
-        lightGrayCristalesFallen = new ArrayList<>(List.of(false, false, false, false, false, false));
-        yellowCristales = new ArrayList<>();
-        yellowCristalesFallen = new ArrayList<>(List.of(false, false, false, false, false, false));
-        pinkCristales = new ArrayList<>();
-        pinkCristalesFallen = new ArrayList<>(List.of(false, false, false, false, false, false));
-        magentaCristales = new ArrayList<>();
-        magentaCristalesFallen = new ArrayList<>(List.of(false, false, false, false, false, false));
-        orangeCristales = new ArrayList<>();
-        orangeCristalesFallen = new ArrayList<>(List.of(false, false, false, false, false, false));
-        grayCristales = new ArrayList<>();
-        grayCristalesFallen = new ArrayList<>(List.of(false, false, false, false, false, false));
-        limeCristales = new ArrayList<>();
-        limeCristalesFallen = new ArrayList<>(List.of(false, false, false, false, false, false));
-        lightBlueCristales = new ArrayList<>();
-        lightBlueCristalesFallen = new ArrayList<>(List.of(false, false, false, false, false, false));
         gamePlayers = new ArrayList<>();
         questions = new HashMap<>();
         currentQuestion = 0;
-        lightGrayAnsweredCorrectly = false;
-        yellowAnsweredCorrectly = false;
-        pinkAnsweredCorrectly = false;
-        magentaAnsweredCorrectly = false;
-        orangeAnsweredCorrectly = false;
-        grayAnsweredCorrectly = false;
-        limeAnsweredCorrectly = false;
-        lightBlueAnsweredCorrectly = false;
     }
     public void endEvent() {
-        for (Player player : gamePlayers) {
-            MainEventUtils.sacrificar(player);
+        for (EuroCristalesPlayerData player : gamePlayers) {
+
+            MainEventUtils.sacrificar(player.player);
         }
         instance = null;
     }
 
     public void flipItemInList(int list, int index) {
         switch (list) {
-            case 0 -> lightGrayCristalesFallen.set(index, true);
-            case 1 -> yellowCristalesFallen.set(index, true);
-            case 2 -> pinkCristalesFallen.set(index, true);
-            case 3 -> magentaCristalesFallen.set(index, true);
-            case 4 -> orangeCristalesFallen.set(index, true);
-            case 5 -> grayCristalesFallen.set(index, true);
-            case 6 -> limeCristalesFallen.set(index, true);
-            case 7 -> lightBlueCristalesFallen.set(index, true);
+            case 0 -> lightGrayPlayer.cristalesFallen.set(index, true);
+            case 1 -> yellowPlayer.cristalesFallen.set(index, true);
+            case 2 -> pinkPlayer.cristalesFallen.set(index, true);
+            case 3 -> magentaPlayer.cristalesFallen.set(index, true);
+            case 4 -> orangePlayer.cristalesFallen.set(index, true);
+            case 5 -> grayPlayer.cristalesFallen.set(index, true);
+            case 6 -> limePlayer.cristalesFallen.set(index, true);
+            case 7 -> lightBluePlayer.cristalesFallen.set(index, true);
         }
     }
+
     private void selectPLayer(Player player) {
         if (lightGrayPlayer == null) {
-            lightGrayPlayer = player;
-            gamePlayers.add(player);
+            lightGrayPlayer = new EuroCristalesPlayerData(player);
         } else if (yellowPlayer == null) {
-            yellowPlayer = player;
-            gamePlayers.add(player);
+            yellowPlayer = new EuroCristalesPlayerData(player);
         } else if (pinkPlayer == null) {
-            pinkPlayer = player;
-            gamePlayers.add(player);
+            pinkPlayer = new EuroCristalesPlayerData(player);
         } else if (magentaPlayer == null) {
-            magentaPlayer = player;
-            gamePlayers.add(player);
+            magentaPlayer = new EuroCristalesPlayerData(player);
         } else if (orangePlayer == null) {
-            orangePlayer = player;
-            gamePlayers.add(player);
+            orangePlayer = new EuroCristalesPlayerData(player);
         } else if (grayPlayer == null) {
-            grayPlayer = player;
-            gamePlayers.add(player);
+            grayPlayer = new EuroCristalesPlayerData(player);
         } else if (limePlayer == null) {
-            limePlayer = player;
-            gamePlayers.add(player);
+            limePlayer = new EuroCristalesPlayerData(player);
         } else if (lightBluePlayer == null) {
-            lightBluePlayer = player;
-            gamePlayers.add(player);
+            lightBluePlayer = new EuroCristalesPlayerData(player);
         }
 
     }
+
     private void tpPlayers() {
         World world = getMVWorld("voidd").getCBWorld();
         if (lightGrayPlayer != null) {
-            lightGrayPlayer.teleport(new Location(world, -837.5, 105.1, 373));
+            lightGrayPlayer.player.teleport(new Location(world, -837.5, 105.1, 373));
         }
         if (yellowPlayer != null) {
-            yellowPlayer.teleport(new Location(world, -837.5, 105.1, 591));
+            yellowPlayer.player.teleport(new Location(world, -837.5, 105.1, 591));
         }
         if (pinkPlayer != null) {
-            pinkPlayer.teleport(new Location(world, -945.5, 105.1, 481));
+            pinkPlayer.player.teleport(new Location(world, -945.5, 105.1, 481));
         }
         if (magentaPlayer != null) {
-            magentaPlayer.teleport(new Location(world, -728, 105.1, 481.5));
+            magentaPlayer.player.teleport(new Location(world, -728, 105.1, 481.5));
         }
         if (orangePlayer != null) {
-            orangePlayer.teleport(new Location(world, -760.5, 105.1, 405.5));
+            orangePlayer.player.teleport(new Location(world, -760.5, 105.1, 405.5));
         }
         if (grayPlayer != null) {
-            grayPlayer.teleport(new Location(world, -913.5, 105.1, 405.5));
+            grayPlayer.player.teleport(new Location(world, -913.5, 105.1, 405.5));
         }
         if (limePlayer != null) {
-            limePlayer.teleport(new Location(world, -913.5, 105.1, 558.5));
+            limePlayer.player.teleport(new Location(world, -913.5, 105.1, 558.5));
         }
         if (lightBluePlayer != null) {
-            lightBluePlayer.teleport(new Location(world, -759.5, 105.1, 559.5));
+            lightBluePlayer.player.teleport(new Location(world, -759.5, 105.1, 559.5));
         }
     }
     public void nextQuestion() {
@@ -423,11 +374,17 @@ public class EuroCristalesEvent {
 
         TextComponent component = Lists.getComponent(questions.get(index), Lists.getResponses(index));
         questionListIndex.remove(listIndex);
-        for (Player player : gamePlayers) {
-            player.sendMessage(component);
+        int currentTitleQuestion = currentQuestion + 1;
+        Title title = Title.title(Component.empty(),  Component.text()
+                .append(Component.text("a ").decorate(TextDecoration.OBFUSCATED).color(TextColor.color(0xFF0002)))
+                .append(Component.text("Pregunta [#" + currentTitleQuestion + "]"))
+                .append(Component.text(" a").decorate(TextDecoration.OBFUSCATED).color(TextColor.color(0xFF0002))).build(), Title.Times.times(Duration.ofSeconds(1), Duration.ofSeconds(3), Duration.ofMillis(500)));
+        for (Player player : Bukkit.getOnlinePlayers()) {
+                    player.sendMessage(component);
+                    player.showTitle(title);
         }
 
-        timer.restartTimer(0 , 20, TimerID.EUROCRISTALES);
+        timer.restartTimer(0 , 7, TimerID.EUROCRISTALES);
 
     }
 
@@ -437,16 +394,50 @@ public class EuroCristalesEvent {
     }
 
     public void endQuestion() {
-        lightGrayAnsweredCorrectly = sendResponse(lightGrayPlayer, lightGrayAnsweredCorrectly, lightGrayCristales);
-        yellowAnsweredCorrectly = sendResponse(yellowPlayer, yellowAnsweredCorrectly, yellowCristales);
-        pinkAnsweredCorrectly = sendResponse(pinkPlayer, pinkAnsweredCorrectly, pinkCristales);
-        magentaAnsweredCorrectly = sendResponse(magentaPlayer, magentaAnsweredCorrectly, magentaCristales);
-        orangeAnsweredCorrectly = sendResponse(orangePlayer, orangeAnsweredCorrectly, orangeCristales);
-        grayAnsweredCorrectly = sendResponse(grayPlayer, grayAnsweredCorrectly, grayCristales);
-        limeAnsweredCorrectly = sendResponse(limePlayer, limeAnsweredCorrectly, limeCristales);
-        lightBlueAnsweredCorrectly = sendResponse(lightBluePlayer, lightBlueAnsweredCorrectly, lightBlueCristales);
+        TextComponent resultados = Component.text("Resultados:").color(TextColor.color(0xFFFFFF)).decorate(TextDecoration.BOLD)
+                .append(Component.newline())
+                .append(Component.text("LightGray: ").color(TextColor.color(0xFFFFFF)).decorate(TextDecoration.BOLD))
+                .append(Component.text(lightGrayPlayer.answeredCorrectly ? "Correcto" : "Incorrecto").color(TextColor.color(0xFFFFFF)))
+                .append(Component.newline())
+                .append(Component.text("Yellow: ").color(TextColor.color(0xFFFFFF)).decorate(TextDecoration.BOLD))
+                .append(Component.text(yellowPlayer.answeredCorrectly ? "Correcto" : "Incorrecto").color(TextColor.color(0xFFFFFF)))
+                .append(Component.newline())
+                .append(Component.text("Pink: ").color(TextColor.color(0xFFFFFF)).decorate(TextDecoration.BOLD))
+                .append(Component.text(pinkPlayer.answeredCorrectly ? "Correcto" : "Incorrecto").color(TextColor.color(0xFFFFFF)))
+                .append(Component.newline())
+                .append(Component.text("Magenta: ").color(TextColor.color(0xFFFFFF)).decorate(TextDecoration.BOLD))
+                .append(Component.text(magentaPlayer.answeredCorrectly ? "Correcto" : "Incorrecto").color(TextColor.color(0xFFFFFF)))
+                .append(Component.newline())
+                .append(Component.text("Orange: ").color(TextColor.color(0xFFFFFF)).decorate(TextDecoration.BOLD))
+                .append(Component.text(orangePlayer.answeredCorrectly ? "Correcto" : "Incorrecto").color(TextColor.color(0xFFFFFF)))
+                .append(Component.newline())
+                .append(Component.text("Gray: ").color(TextColor.color(0xFFFFFF)).decorate(TextDecoration.BOLD))
+                .append(Component.text(grayPlayer.answeredCorrectly ? "Correcto" : "Incorrecto").color(TextColor.color(0xFFFFFF)))
+                .append(Component.newline())
+                .append(Component.text("Lime: ").color(TextColor.color(0xFFFFFF)).decorate(TextDecoration.BOLD))
+                .append(Component.text(limePlayer.answeredCorrectly ? "Correcto" : "Incorrecto").color(TextColor.color(0xFFFFFF)))
+                .append(Component.newline())
+                .append(Component.text("LightBlue: ").color(TextColor.color(0xFFFFFF)).decorate(TextDecoration.BOLD))
+                .append(Component.text(lightBluePlayer.answeredCorrectly ? "Correcto" : "Incorrecto").color(TextColor.color(0xFFFFFF)));
+
+        lightGrayPlayer.answeredCorrectly = sendResponse(lightGrayPlayer.player, lightGrayPlayer.answeredCorrectly, lightGrayPlayer.cristales);
+        yellowPlayer.answeredCorrectly = sendResponse(yellowPlayer.player, yellowPlayer.answeredCorrectly, yellowPlayer.cristales);
+        pinkPlayer.answeredCorrectly = sendResponse(pinkPlayer.player, pinkPlayer.answeredCorrectly, pinkPlayer.cristales);
+        magentaPlayer.answeredCorrectly = sendResponse(magentaPlayer.player, magentaPlayer.answeredCorrectly, magentaPlayer.cristales);
+        orangePlayer.answeredCorrectly = sendResponse(orangePlayer.player, orangePlayer.answeredCorrectly, orangePlayer.cristales);
+        grayPlayer.answeredCorrectly = sendResponse(grayPlayer.player, grayPlayer.answeredCorrectly, grayPlayer.cristales);
+        limePlayer.answeredCorrectly = sendResponse(limePlayer.player, limePlayer.answeredCorrectly, limePlayer.cristales);
+        lightBluePlayer.answeredCorrectly = sendResponse(lightBluePlayer.player, lightBluePlayer.answeredCorrectly, lightBluePlayer.cristales);
+        Collection<? extends Player> players = Bukkit.getOnlinePlayers();
+
+        for (Player player : players) {
+            if (!player.isOp()) {
+                continue;
+            }
+            player.sendMessage(resultados);
+        }
         currentQuestion++;
-        timer.restartTimer(0, 20, TimerID.EUROCRISTALES_P2);
+        timer.restartTimer(0, 1, TimerID.EUROCRISTALES_P2); // 20s
     }
     private boolean sendResponse(Player player, boolean correct, List<Boolean> cristales) {
         if (player == null) {
@@ -458,8 +449,9 @@ public class EuroCristalesEvent {
         TextComponent derecha = Component.text("El cristal correcto es el de la: ").color(TextColor.color(0x524FF))
                 .append(Component.text("Derecha").color(TextColor.color(0x524FF)).decorate(TextDecoration.BOLD));
         Title titleDerecha = Title.title(Component.empty(), derecha, Title.Times.times(Duration.ofSeconds(1), Duration.ofSeconds(3), Duration.ofMillis(500)));
+
         if(correct) {
-            player.sendMessage("Respuesta correcta");
+            player.sendMessage(Component.text("Respuesta correcta").color(TextColor.color(0xFF06)).decorate(TextDecoration.BOLD));
             if (!cristales.get(currentQuestion)) {
                 player.sendMessage(derecha);
                 player.showTitle(titleDerecha);
@@ -469,42 +461,49 @@ public class EuroCristalesEvent {
 
                 player.showTitle(titleIzquierda);
             }
-            Sound sound = Sound.sound(org.bukkit.Sound.BLOCK_NOTE_BLOCK_PLING.key(), Sound.Source.MASTER, 1F, 2F);
+            Sound sound = Sound.sound(org.bukkit.Sound.BLOCK_NOTE_BLOCK_PLING, Sound.Source.MASTER, 1F, 2F);
             player.playSound(sound);
         } else {
-            player.sendMessage("Respuesta incorrecta");
+            player.sendMessage(Component.text("Respuesta incorrecta").color(TextColor.color(0xFF001D)).decorate(TextDecoration.BOLD));
+            Title titleLose = Title.title(Component.empty(), Component.text()
+                    .append(Component.text("a ").decorate(TextDecoration.OBFUSCATED).color(TextColor.color(0xFF001D)))
+                    .append(Component.text("Respuesta incorrecta"))
+                    .append(Component.text(" a").decorate(TextDecoration.OBFUSCATED).color(TextColor.color(0xFF001D))).build(),
+                    Title.Times.times(Duration.ofSeconds(1), Duration.ofSeconds(3), Duration.ofMillis(500)));
+            player.showTitle(titleLose);
             player.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, 20*5, 1));
-            Sound sound = Sound.sound(org.bukkit.Sound.BLOCK_NOTE_BLOCK_PLING.key(), Sound.Source.MASTER, 1F, 0.5F);
+            Sound sound = Sound.sound(org.bukkit.Sound.BLOCK_NOTE_BLOCK_PLING, Sound.Source.MASTER, 1F, 0.5F);
             player.playSound(sound);
         }
         return false;
     }
     public void answerQuestion(Player player, Integer i) {
         if (player == lightGrayPlayer) {
-            lightGrayAnsweredCorrectly = i == 0;
+            lightGrayPlayer.answeredCorrectly = i == 0;
             player.sendMessage("Respuesta enviada");
         } else if (player == yellowPlayer) {
-            yellowAnsweredCorrectly = i == 0;
+            yellowPlayer.answeredCorrectly = i == 0;
             player.sendMessage("Respuesta enviada");
         } else if (player == pinkPlayer) {
-            pinkAnsweredCorrectly = i == 0;
+            pinkPlayer.answeredCorrectly = i == 0;
             player.sendMessage("Respuesta enviada");
         } else if (player == magentaPlayer) {
-            magentaAnsweredCorrectly = i == 0;
+            magentaPlayer.answeredCorrectly = i == 0;
             player.sendMessage("Respuesta enviada");
         } else if (player == orangePlayer) {
-            orangeAnsweredCorrectly = i == 0;
+            orangePlayer.answeredCorrectly = i == 0;
             player.sendMessage("Respuesta enviada");
         } else if (player == grayPlayer) {
-            grayAnsweredCorrectly = i == 0;
+            grayPlayer.answeredCorrectly = i == 0;
             player.sendMessage("Respuesta enviada");
         } else if (player == limePlayer) {
-            limeAnsweredCorrectly = i == 0;
+            limePlayer.answeredCorrectly = i == 0;
             player.sendMessage("Respuesta enviada");
         } else if (player == lightBluePlayer) {
-            lightBlueAnsweredCorrectly = i == 0;
+            lightBluePlayer.answeredCorrectly = i == 0;
             player.sendMessage("Respuesta enviada");
         }
-
+        Sound sound = Sound.sound(org.bukkit.Sound.BLOCK_NOTE_BLOCK_PLING, Sound.Source.MASTER, 1F, 1.06f);
+        player.playSound(sound);
     }
 }
