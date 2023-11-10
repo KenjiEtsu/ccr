@@ -22,17 +22,17 @@ public class Lists {
         // 4 opciones
         questions.put(1, "Cual es la estrella mas cercana a la tierra?");
         questions.put(2, "Cual es el pais mas grande del mundo?");
-        questions.put(3,"Cual es el pais menos poblado del mundo?");
-        questions.put(4,"Cual es el pais mas poblado del mundo?");
-        questions.put(5,"Cuando acabo la primera guerra mundial?");
-        questions.put(6,"Cuando acabo la segunda guerra mundial?");
-        questions.put(7,"Cuantas veces ha estado el hombre en la luna?");
+        questions.put(3, "Cual es el pais menos poblado del mundo?");
+        questions.put(4, "Cual es el pais mas poblado del mundo?");
+        questions.put(5, "Cuando acabo la primera guerra mundial?");
+        questions.put(6, "Cuando acabo la segunda guerra mundial?");
+        questions.put(7, "Cuantas veces ha estado el hombre en la luna?");
         // questions.add("¿A parte de la Casa Blanca, ?");
-        questions.put(8,"Cual es el rio mas largo del mundo?");
-        questions.put(9,"Cuantos huesos tiene el cuerpo humano?");
-        questions.put(10,"Como se llama el proceso por el cual las plantas se alimentan?");
-        questions.put(11,"Cuanto vale el numero pi?(truncando)");
-        questions.put(12,"Quien pinto La ultima cena?");
+        questions.put(8, "Cual es el rio mas largo del mundo?");
+        questions.put(9, "Cuantos huesos tiene el cuerpo humano?");
+        questions.put(10, "Como se llama el proceso por el cual las plantas se alimentan?");
+        questions.put(11, "Cuanto vale el numero pi?(truncando)");
+        questions.put(12, "Quien pinto La ultima cena?");
 
 
 
@@ -124,9 +124,32 @@ public class Lists {
 
 
     }
+
+    public static @NotNull TextComponent getEurocristalesGameInfo() {
+        return Component.text()
+                .append(Component.text("         EuroCristales ").color(TextColor.color(0xFF0027)))
+                .append(Component.newline())
+                .append(Component.newline())
+                .append(Component.text("Responde las preguntas dando click en el chat a la respuesta que crees la correcta.").color(TextColor.color(0xFFFFFF)))
+                .append(Component.newline())
+                .append(Component.newline())
+                .append(Component.text("Si no aciertas, tendras que probar tu suerte :))))").color(TextColor.color(0xFFFFFF)))
+                .append(Component.newline())
+                .append(Component.newline())
+                .append(Component.text("Tienes 5 segundos para responder cada pregunta").color(TextColor.color(0xFFFFFF)))
+                .append(Component.newline())
+                .append(Component.newline())
+                .append(Component.text("Mucha Suerte, la necesitais :)").color(TextColor.color(0xFFFFFF)))
+                .build();
+    }
+
     public static @NotNull TextComponent getComponent(String question, List<String> responses) {
-        if (responses.size() != 4 || question == null) {
-            Bukkit.getLogger().warning("Error en la lista de respuestas o pregunta");
+        if (responses.size() != 4) {
+            Bukkit.getLogger().warning("Error en la lista de respuestas");
+            return Component.text("Error");
+        }
+        if ( question == null) {
+            Bukkit.getLogger().warning("Error en la pregunta");
             return Component.text("Error");
         }
         List<Integer> numbers = new ArrayList<>(List.of(0, 1, 2, 3));
@@ -335,7 +358,68 @@ public class Lists {
         return locations;
     }
 
-
+    public static @NotNull List<List<Location>> getGallinitaFinalHints() {
+        List<List<Location>> locations = new ArrayList<>();
+        MultiverseWorld world = getMVWorld("MidnightCastle");
+        List<Location> locations1 = new ArrayList<>();
+        locations1.add(new Location(world.getCBWorld(), 8.5, 99.5, 48.5));
+        locations1.add(new Location(world.getCBWorld(), 11.5, 99.5, 47.5));
+        locations1.add(new Location(world.getCBWorld(), 13.5, 99.5, 45.5));
+        locations1.add(new Location(world.getCBWorld(), 15.5, 100.5, 42.5));
+        locations1.add(new Location(world.getCBWorld(), 16.5, 100.5, 39.5));
+        locations1.add(new Location(world.getCBWorld(), 17.5, 100.5, 35.5));
+        locations1.add(new Location(world.getCBWorld(), 18.5, 100.5, 31.5));
+        locations1.add(new Location(world.getCBWorld(), 19.5, 100.5, 27.5));
+        locations1.add(new Location(world.getCBWorld(), 19.5, 100.5, 23.5));
+        locations1.add(new Location(world.getCBWorld(), 19.5, 100.5, 19.5));
+        locations1.add(new Location(world.getCBWorld(), 21.5, 100.5, 17.5));
+        locations1.add(new Location(world.getCBWorld(), 23.5, 100.5, 20.5));
+        locations.add(locations1);
+        List<Location> locations2 = new ArrayList<>();
+        locations2.add(new Location(world.getCBWorld(), 8.5, 101.5, 33.5));
+        locations2.add(new Location(world.getCBWorld(), 11.5, 101.5, 33.5));
+        locations2.add(new Location(world.getCBWorld(), 13.5, 100.5, 30.5));
+        locations2.add(new Location(world.getCBWorld(), 15.5, 100.5, 27.5));
+        locations2.add(new Location(world.getCBWorld(), 17.5, 100.5, 25.5));
+        locations2.add(new Location(world.getCBWorld(), 19.5, 100.5, 23.5));
+        locations2.add(new Location(world.getCBWorld(), 19.5, 100.5,  19.5));
+        locations2.add(new Location(world.getCBWorld(), 21.5, 100.5, 17.5));
+        locations2.add(new Location(world.getCBWorld(), 23.5, 100.5, 20.5));
+        locations.add(locations2);
+        List<Location> locations3 = new ArrayList<>();
+        locations3.add(new Location(world.getCBWorld(), 8.5, 99.5, 20.5));
+        locations3.add(new Location(world.getCBWorld(), 12.5, 100.5, 20.5));
+        locations3.add(new Location(world.getCBWorld(), 16.5, 100.5, 20.5));
+        locations3.add(new Location(world.getCBWorld(), 19.5, 100.5, 19.5));
+        locations3.add(new Location(world.getCBWorld(), 21.5, 100.5, 17.5));
+        locations3.add(new Location(world.getCBWorld(), 23.5, 100.5, 20.5));
+        locations.add(locations3);
+        List<Location> locations4 = new ArrayList<>();
+        locations4.add(new Location(world.getCBWorld(), 10.5, 99.5, 5.5));
+        locations4.add(new Location(world.getCBWorld(), 13.5, 99.5, 8.5));
+        locations4.add(new Location(world.getCBWorld(), 15.5, 99.5, 10.5));
+        locations4.add(new Location(world.getCBWorld(), 17.5, 99.5, 13.5));
+        locations4.add(new Location(world.getCBWorld(), 19.5, 99.5, 15.5));
+        locations4.add(new Location(world.getCBWorld(), 21.5, 99.5, 17.5));
+        locations4.add(new Location(world.getCBWorld(), 23.5, 100.5, 20.5));
+        locations.add(locations4);
+        List<Location> locations5 = new ArrayList<>();
+        locations5.add(new Location(world.getCBWorld(), 8.5, 99.5, -10.5));
+        locations5.add(new Location(world.getCBWorld(), 11.5, 99.5, -9.5));
+        locations5.add(new Location(world.getCBWorld(), 13.5, 99.5, -6.5));
+        locations5.add(new Location(world.getCBWorld(), 15.5, 99.5, -3.5));
+        locations5.add(new Location(world.getCBWorld(), 16.5, 99.5, 0.5));
+        locations5.add(new Location(world.getCBWorld(), 17.5, 99.5, 3.5));
+        locations5.add(new Location(world.getCBWorld(), 18.5, 99.5, 6.5));
+        locations5.add(new Location(world.getCBWorld(), 19.5, 99.5, 8.5));
+        locations5.add(new Location(world.getCBWorld(), 19.5, 100.5, 11.5));
+        locations5.add(new Location(world.getCBWorld(), 19.5, 100.5, 15.5));
+        locations5.add(new Location(world.getCBWorld(), 21.5, 100.5, 17.5));
+        locations5.add(new Location(world.getCBWorld(), 23.5, 100.5, 20.5));
+        locations.add(locations5);
+        List<Location> locations6 = new ArrayList<>();
+        return locations;
+    }
     public static @NotNull List<Location> getFinalLocations() {
         List<Location> locations = new ArrayList<>();
         MultiverseWorld world = getMVWorld("esplosion");

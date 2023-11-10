@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CCRCompleter implements TabCompleter {
-    private static final String[] COMMANDS = {"balon", "spleef", "escondite", "papafria", "eventoFinal", "getSacrificador", "eurocristales"};
+    private static final String[] COMMANDS = {"balon", "spleef", "escondite", "papafria", "eventoFinal", "getSacrificador", "eurocristales", "gallinita"};
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!sender.isOp()) {

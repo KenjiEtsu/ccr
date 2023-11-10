@@ -70,6 +70,10 @@ public class CCRCommand implements CommandExecutor {
                 EuroCristalesEvent euroCristalesEvent = EuroCristalesEvent.getEuroCristalesEvent();
                 euroCristalesEvent.startEvent();
             }
+            else if (args[0].equals("gallinita")) {
+                GallinitaEvent gallinitaEvent = GallinitaEvent.getGallinitaEvent();
+                gallinitaEvent.startEvent();
+            }
 
 
         }

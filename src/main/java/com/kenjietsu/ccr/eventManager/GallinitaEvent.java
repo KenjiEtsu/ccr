@@ -1,14 +1,19 @@
 package com.kenjietsu.ccr.eventManager;
 
+import com.kenjietsu.ccr.Ccr;
 import com.kenjietsu.ccr.eventManager.utils.GallinitaTeam;
+import com.kenjietsu.ccr.eventManager.utils.Lists;
 import com.kenjietsu.ccr.eventManager.utils.TimerID;
 import com.kenjietsu.ccr.eventManager.utils.Timers;
 import com.kenjietsu.ccr.items.ItemManager;
 import com.kenjietsu.ccr.utils.MVCoreUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
+import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.entity.Player;
-import org.bukkit.permissions.ServerOperator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -26,7 +31,7 @@ public class GallinitaEvent {
 
     public void startEvent() {
         List<Player> onlinePlayers = MVCoreUtils.getMVWorld("MidnightCastle").getCBWorld().getPlayers();
-        onlinePlayers.removeIf(ServerOperator::isOp);
+        //onlinePlayers.removeIf(ServerOperator::isOp);
         if (onlinePlayers.size() > 10 || onlinePlayers.size() < 2 || onlinePlayers.size()%2 != 0) {
             Bukkit.getLogger().warning("GallinitaEvent: Muchos jugadores, o muy pocos, o no son pares");
             return;
@@ -36,18 +41,35 @@ public class GallinitaEvent {
             Random rnd = new Random();
             int j = rnd.nextInt(onlinePlayers.size());
             int k = rnd.nextInt(onlinePlayers.size());
-            if (j == k) {
+            while (j == k) {
                 k = rnd.nextInt(onlinePlayers.size());
             }
-
+            initList();
             gallinitaTeams.add(new GallinitaTeam((Player) onlinePlayers.toArray()[j], (Player) onlinePlayers.toArray()[k]));
             onlinePlayers.remove(j);
             onlinePlayers.remove(k);
         }
-        timer = new Timers(10, 0, TimerID.GALLINA);  // IDK, cambiar el tiempo porsi
+        timer = new Timers(30, 0, TimerID.GALLINA);  // IDK, cambiar el tiempo porsi
         startGalliniters();
+        startHints();
     }
-    public void startGalliniters(){
+    private void startHints() {
+        int i;
+        for (List<Location> locations : Lists.getGallinitaFinalHints()) {
+            i = 0;
+            for (Location location : locations) {
+                Bukkit.getScheduler().runTaskTimer(Ccr.getPlugin(Ccr.class), () -> {
+                    location.getWorld().spawnParticle(Particle.REDSTONE, location, 10, 0.1, 0.1, 0.1, 0, new Particle.DustOptions(Color.RED, 1));
+                }, i* 10L, 120);
+
+                i++;
+            }
+        }
+    }
+    private void initList() {
+        gallinitaTeams = new ArrayList<GallinitaTeam>();
+    }
+    private void startGalliniters(){
         int i = 0;
         for (GallinitaTeam gallinitaTeam : gallinitaTeams) {
             // first location -130 99 -11 next locations + 15
